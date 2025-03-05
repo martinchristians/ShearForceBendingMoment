@@ -9,7 +9,7 @@ public class SceneLoad : MonoBehaviour
 
     private void Awake()
     {
-        StartCoroutine(LoadAsynScene());
+        if (sceneReference != null) StartCoroutine(LoadAsynScene());
     }
 
     IEnumerator LoadAsynScene()
