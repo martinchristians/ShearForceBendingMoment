@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 47362256}
   - component: {fileID: 47362255}
   - component: {fileID: 47362254}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2336,7 +2336,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 823
+    m_Bits: 1855
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2430,7 +2430,7 @@ GameObject:
   - component: {fileID: 1843943837}
   - component: {fileID: 1843943838}
   - component: {fileID: 1843943840}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: XR Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3112,7 +3112,7 @@ GameObject:
   - component: {fileID: 2136770586}
   - component: {fileID: 2136770585}
   - component: {fileID: 2136770584}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
