@@ -37,6 +37,8 @@ public class LoginManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("Connected!");
         test.MakeASound();
+        
+        PhotonNetwork.LoadLevel("Exercise");
     }
 
     #endregion
