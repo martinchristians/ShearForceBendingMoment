@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Test_OnButtonPressed : MonoBehaviour
+public class Test_MakeASound : MonoBehaviour
 {
     public AudioSource audioSource;
 
-    public void OnButtonPressed()
+    public void MakeASound()
     {
         if (audioSource == null) return;
 
