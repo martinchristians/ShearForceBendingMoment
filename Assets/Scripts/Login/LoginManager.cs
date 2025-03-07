@@ -35,9 +35,9 @@ public class LoginManager : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
-        Debug.Log("Connected!");
+        Debug.Log("Connected! Player name: " + PhotonNetwork.NickName);
         test.MakeASound();
-        
+
         PhotonNetwork.LoadLevel("Exercise");
     }
 
