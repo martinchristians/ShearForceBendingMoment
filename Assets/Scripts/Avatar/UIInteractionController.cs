@@ -4,10 +4,13 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class UIInteractionController : MonoBehaviour
 {
-    [SerializeField] private GameObject uiCanvasGameObject;
+    public GameObject uiCanvasGameObject;
 
-    [SerializeField] private GameObject uiController;
-    [SerializeField] private GameObject baseController;
+    public GameObject attachTransform;
+    public Vector3 attachTransformOffset;
+
+    public GameObject uiController;
+    public GameObject baseController;
 
     private bool _isUICanvasActive;
     [SerializeField] private InputActionReference inputActionReferenceUISwitcher;
@@ -38,6 +41,11 @@ public class UIInteractionController : MonoBehaviour
         {
             _isUICanvasActive = true;
             uiCanvasGameObject.SetActive(true);
+            
+            uiCanvasGameObject.gameObject.transform.position = new Vector3(
+                attachTransform.transform.position.x + attachTransformOffset.x,
+                attachTransform.transform.position.y + attachTransformOffset.y,
+                attachTransform.transform.position.z + attachTransformOffset.z);
 
             uiController.GetComponent<XRRayInteractor>().enabled = true;
             uiController.GetComponent<XRInteractorLineVisual>().enabled = true;
