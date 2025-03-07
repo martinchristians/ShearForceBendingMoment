@@ -1486,6 +1486,21 @@ PrefabInstance:
       propertyPath: m_OnSelect.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: VRKeyboardManager, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 4259889453322337187, guid: f30e961c58b684b90ac62018ded893b0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 960816124}
+    - target: {fileID: 4259889453322337187, guid: f30e961c58b684b90ac62018ded893b0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ConnectWithName
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259889453322337187, guid: f30e961c58b684b90ac62018ded893b0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LoginManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4259889453996848697, guid: f30e961c58b684b90ac62018ded893b0,
         type: 3}
       propertyPath: m_Name
@@ -2574,6 +2589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00a93d6cf94a45de8d0df8708281a0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInputName: {fileID: 759313040}
   test: {fileID: 388128910}
 --- !u!1 &985206755
 GameObject:
