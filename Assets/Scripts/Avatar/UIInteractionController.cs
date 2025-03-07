@@ -6,8 +6,8 @@ public class UIInteractionController : MonoBehaviour
 {
     public GameObject uiCanvasGameObject;
 
-    public GameObject attachTransform;
-    public Vector3 attachTransformOffset;
+    //public GameObject attachTransform;
+    //public Vector3 attachTransformOffset;
 
     public GameObject uiController;
     public GameObject baseController;
@@ -42,10 +42,10 @@ public class UIInteractionController : MonoBehaviour
             _isUICanvasActive = true;
             uiCanvasGameObject.SetActive(true);
             
-            uiCanvasGameObject.gameObject.transform.position = new Vector3(
+            /*uiCanvasGameObject.gameObject.transform.position = new Vector3(
                 attachTransform.transform.position.x + attachTransformOffset.x,
                 attachTransform.transform.position.y + attachTransformOffset.y,
-                attachTransform.transform.position.z + attachTransformOffset.z);
+                attachTransform.transform.position.z + attachTransformOffset.z);*/
 
             uiController.GetComponent<XRRayInteractor>().enabled = true;
             uiController.GetComponent<XRInteractorLineVisual>().enabled = true;

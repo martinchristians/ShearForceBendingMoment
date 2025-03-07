@@ -5987,8 +5987,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 77.765305, y: 0.14495793, z: 86.67002}
-  m_Center: {x: 2.2026596, y: 0.072478965, z: -9.272675}
+  m_Size: {x: 77.765305, y: 0, z: 86.67002}
+  m_Center: {x: 2.2026596, y: 0, z: -9.272675}
 --- !u!114 &898550206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9944,8 +9944,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiCanvasGameObject: {fileID: 6333773}
-  attachTransform: {fileID: 0}
-  attachTransformOffset: {x: 0, y: 0, z: 0}
   uiController: {fileID: 680995460}
   baseController: {fileID: 391664471}
   inputActionReferenceUISwitcher: {fileID: -7262586807441085258, guid: c348712bda248c246b8c49b3db54643f,
