@@ -38,7 +38,7 @@ public class LoginManager : MonoBehaviourPunCallbacks
         Debug.Log("Connected! Player name: " + PhotonNetwork.NickName);
         test.MakeASound();
 
-        PhotonNetwork.LoadLevel("Exercise");
+        PhotonNetwork.LoadLevel("Tutorial");
     }
 
     #endregion
