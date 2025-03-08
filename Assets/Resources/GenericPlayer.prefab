@@ -1413,6 +1413,7 @@ GameObject:
   - component: {fileID: 479808383527231215}
   - component: {fileID: 3958350276810454548}
   - component: {fileID: 5999758519321490328}
+  - component: {fileID: 4689752387202957936}
   m_Layer: 0
   m_Name: GenericPlayer
   m_TagString: Untagged
@@ -1454,8 +1455,9 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 3
   OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
+  observableSearch: 0
+  ObservedComponents:
+  - {fileID: 4689752387202957936}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1474,6 +1476,24 @@ MonoBehaviour:
   xrOriginGameObject: {fileID: 479808383250318765}
   avatarHeadGameObject: {fileID: 479808383774433238}
   avatarBodyGameObject: {fileID: 479808383112479645}
+--- !u!114 &4689752387202957936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479808383527231212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7663a783b7da445f9ec9803497aae99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  genericPlayer: {fileID: 479808383527231215}
+  avatar: {fileID: 479808384115779560}
+  avatarHead: {fileID: 479808383774433233}
+  avatarBody: {fileID: 479808383112479644}
+  avatarLeftHand: {fileID: 479808384216785067}
+  avatarRightHand: {fileID: 479808382517216786}
 --- !u!1 &479808383774433238
 GameObject:
   m_ObjectHideFlags: 0
