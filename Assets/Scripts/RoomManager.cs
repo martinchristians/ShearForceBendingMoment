@@ -1,11 +1,17 @@
 using Photon.Pun;
 using UnityEngine;
 using Photon.Realtime;
+using Random = UnityEngine.Random;
 
 public class RoomManager : MonoBehaviourPunCallbacks
 {
     private string _mapType;
     public int maxPlayer;
+
+    private void Start()
+    {
+        PhotonNetwork.AutomaticallySyncScene = true;
+    }
 
     #region UI Callback
 
@@ -53,10 +59,20 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey(MultiplayerVRConstants.MapTypeKey))
         {
-            object type;
-            if (PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(MultiplayerVRConstants.MapTypeKey, out type))
+            object mapType;
+            if (PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(MultiplayerVRConstants.MapTypeKey, out mapType))
             {
-                Debug.Log("Joined room with type: " + (string)type);
+                Debug.Log("Joined room with type: " + (string)mapType);
+
+                switch ((string)mapType)
+                {
+                    case MultiplayerVRConstants.MapTypeValueExercise:
+                        PhotonNetwork.LoadLevel("Exercise");
+                        break;
+                    case MultiplayerVRConstants.MapTypeValueExperiment:
+                        PhotonNetwork.LoadLevel("Experiment");
+                        break;
+                }
             }
         }
     }
