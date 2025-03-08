@@ -1,16 +1,26 @@
+using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 using Photon.Realtime;
 using Random = UnityEngine.Random;
+using TMPro;
 
 public class RoomManager : MonoBehaviourPunCallbacks
 {
     private string _mapType;
     public int maxPlayer;
 
+    public TextMeshProUGUI OccupancyRateTextExercise;
+    public TextMeshProUGUI OccupancyRateTextExperiment;
+
     private void Start()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
+
+        if (PhotonNetwork.IsConnectedAndReady)
+        {
+            PhotonNetwork.JoinLobby();
+        }
     }
 
     #region UI Callback
@@ -83,11 +93,36 @@ public class RoomManager : MonoBehaviourPunCallbacks
             "Player " + newPlayer.NickName + " is joining. Player count: " + PhotonNetwork.CurrentRoom.PlayerCount);
     }
 
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        if (roomList.Count == 0)
+        {
+            OccupancyRateTextExercise.text = 0 + "/" + 20;
+            OccupancyRateTextExperiment.text = 0 + "/" + 20;
+        }
+
+        foreach (RoomInfo room in roomList)
+        {
+            Debug.Log(room.Name);
+            if (room.Name.Contains(MultiplayerVRConstants.MapTypeValueExercise))
+                OccupancyRateTextExercise.text = room.PlayerCount + "/" + 20;
+            else if (room.Name.Contains(MultiplayerVRConstants.MapTypeValueExperiment))
+                OccupancyRateTextExperiment.text = room.PlayerCount + "/" + 20;
+
+            Debug.Log("Room: " + room.Name + " is filled with " + room.PlayerCount + " player.");
+        }
+    }
+
+    public override void OnJoinedLobby()
+    {
+        Debug.Log("YEY.. Joined the lobby!");
+    }
+
     #endregion
 
     private void CreateAndJoinRoom()
     {
-        string randomRoomName = "ROOM-" + Random.Range(0, 100);
+        string randomRoomName = "ROOM-" + _mapType + Random.Range(0, 100);
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = maxPlayer;
 
