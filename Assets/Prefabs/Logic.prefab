@@ -2698,8 +2698,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxPlayer: 20
-  OccupancyRateTextExercise: {fileID: 1266784452221738471}
-  OccupancyRateTextExperiment: {fileID: 1266784451581704458}
+  occupancyRateTextExercise: {fileID: 1266784452221738471}
+  occupancyRateTextExperiment: {fileID: 1266784451581704458}
 --- !u!1 &4548103160484148551
 GameObject:
   m_ObjectHideFlags: 0

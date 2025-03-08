@@ -10,17 +10,30 @@ public class RoomManager : MonoBehaviourPunCallbacks
     private string _mapType;
     public int maxPlayer;
 
-    public TextMeshProUGUI OccupancyRateTextExercise;
-    public TextMeshProUGUI OccupancyRateTextExperiment;
+    public TextMeshProUGUI occupancyRateTextExercise;
+    public TextMeshProUGUI occupancyRateTextExperiment;
+
+    public static RoomManager instance;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+    }
 
     private void Start()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
 
-        if (PhotonNetwork.IsConnectedAndReady)
-        {
+        if (!PhotonNetwork.IsConnectedAndReady)
+            PhotonNetwork.ConnectUsingSettings();
+        else
             PhotonNetwork.JoinLobby();
-        }
     }
 
     #region UI Callback
@@ -55,6 +68,12 @@ public class RoomManager : MonoBehaviourPunCallbacks
         Debug.Log(message);
 
         CreateAndJoinRoom();
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("Reconnecting to server...");
+        PhotonNetwork.JoinLobby();
     }
 
     public override void OnCreatedRoom()
@@ -97,17 +116,17 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         if (roomList.Count == 0)
         {
-            OccupancyRateTextExercise.text = 0 + "/" + 20;
-            OccupancyRateTextExperiment.text = 0 + "/" + 20;
+            occupancyRateTextExercise.text = 0 + "/" + 20;
+            occupancyRateTextExperiment.text = 0 + "/" + 20;
         }
 
         foreach (RoomInfo room in roomList)
         {
             Debug.Log(room.Name);
             if (room.Name.Contains(MultiplayerVRConstants.MapTypeValueExercise))
-                OccupancyRateTextExercise.text = room.PlayerCount + "/" + 20;
+                occupancyRateTextExercise.text = room.PlayerCount + "/" + 20;
             else if (room.Name.Contains(MultiplayerVRConstants.MapTypeValueExperiment))
-                OccupancyRateTextExperiment.text = room.PlayerCount + "/" + 20;
+                occupancyRateTextExperiment.text = room.PlayerCount + "/" + 20;
 
             Debug.Log("Room: " + room.Name + " is filled with " + room.PlayerCount + " player.");
         }
@@ -116,6 +135,17 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         Debug.Log("YEY.. Joined the lobby!");
+    }
+
+    public override void OnLeftRoom()
+    {
+        PhotonNetwork.Disconnect();
+        Debug.Log("Bye-Bye!");
+    }
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        PhotonNetwork.LoadLevel("Tutorial");
     }
 
     #endregion
@@ -135,5 +165,10 @@ public class RoomManager : MonoBehaviourPunCallbacks
         roomOptions.CustomRoomProperties = customRoomProperties;
 
         PhotonNetwork.CreateRoom(randomRoomName, roomOptions);
+    }
+
+    public void LeaveRoomAndLoadHomeScene()
+    {
+        PhotonNetwork.LeaveRoom();
     }
 }
