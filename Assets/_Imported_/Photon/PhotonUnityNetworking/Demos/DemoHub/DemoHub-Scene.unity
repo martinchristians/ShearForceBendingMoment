@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: c75a8e70b1c8545e19b84b676d4efb65,
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 8da4a63cff69d4380ae34a397bbf6d28,
     type: 2}
 --- !u!196 &5
 NavMeshSettings:
@@ -2915,7 +2915,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1819294242}
   m_HandleRect: {fileID: 1819294241}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

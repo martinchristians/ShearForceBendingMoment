@@ -347,7 +347,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 3d2e3df7bba24429693d5c8981b592b5,
+  m_LightingSettings: {fileID: 4890085278179872738, guid: ce51ba69a4b294492b758e64b5be4553,
     type: 2}
 --- !u!114 &53
 MonoBehaviour:
@@ -2727,7 +2727,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1692193655}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
