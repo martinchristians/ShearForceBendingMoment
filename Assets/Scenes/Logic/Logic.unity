@@ -170,6 +170,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4548103159925618661, guid: fc9fa06abcea04b718eb7fd11a369202,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4548103160310434146, guid: fc9fa06abcea04b718eb7fd11a369202,
         type: 3}
       propertyPath: m_Name
@@ -235,11 +240,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4548103160771500219, guid: fc9fa06abcea04b718eb7fd11a369202,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4548103161134967130, guid: fc9fa06abcea04b718eb7fd11a369202,
         type: 3}
       propertyPath: sceneReference
       value: 
       objectReference: {fileID: 11400000, guid: 2a7e7ae9cf67347959f48e58c369243d,
         type: 2}
+    - target: {fileID: 5758044312924169751, guid: fc9fa06abcea04b718eb7fd11a369202,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc9fa06abcea04b718eb7fd11a369202, type: 3}

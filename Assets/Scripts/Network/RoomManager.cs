@@ -13,19 +13,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public TextMeshProUGUI occupancyRateTextExercise;
     public TextMeshProUGUI occupancyRateTextExperiment;
 
-    public static RoomManager instance;
-
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        instance = this;
-    }
-
     private void Start()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -137,17 +124,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
         Debug.Log("YEY.. Joined the lobby!");
     }
 
-    public override void OnLeftRoom()
-    {
-        PhotonNetwork.Disconnect();
-        Debug.Log("Bye-Bye!");
-    }
-
-    public override void OnDisconnected(DisconnectCause cause)
-    {
-        PhotonNetwork.LoadLevel("Tutorial");
-    }
-
     #endregion
 
     private void CreateAndJoinRoom()
@@ -165,10 +141,5 @@ public class RoomManager : MonoBehaviourPunCallbacks
         roomOptions.CustomRoomProperties = customRoomProperties;
 
         PhotonNetwork.CreateRoom(randomRoomName, roomOptions);
-    }
-
-    public void LeaveRoomAndLoadHomeScene()
-    {
-        PhotonNetwork.LeaveRoom();
     }
 }

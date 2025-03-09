@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LoginUIManager : MonoBehaviour
@@ -14,10 +12,6 @@ public class LoginUIManager : MonoBehaviour
         connectOptionsPanelGameobject.SetActive(true);
         connectWithNamePanelGameobject.SetActive(false);
     }
-
-    #endregion
-
-    #region Photon Callback
 
     #endregion
 }
