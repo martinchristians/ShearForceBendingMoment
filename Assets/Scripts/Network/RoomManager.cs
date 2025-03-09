@@ -8,7 +8,7 @@ using TMPro;
 public class RoomManager : MonoBehaviourPunCallbacks
 {
     private string _mapType;
-    public int maxPlayer;
+    public byte maxPlayer;
 
     public TextMeshProUGUI occupancyRateTextExercise;
     public TextMeshProUGUI occupancyRateTextExperiment;

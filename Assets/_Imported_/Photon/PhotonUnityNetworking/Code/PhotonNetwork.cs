@@ -64,7 +64,7 @@ namespace Photon.Pun
     public static partial class PhotonNetwork
     {
         /// <summary>Version number of PUN. Used in the AppVersion, which separates your playerbase in matchmaking.</summary>
-        public const string PunVersion = "2.49";
+        public const string PunVersion = "2.33.3";
 
         /// <summary>Version number of your game. Setting this updates the AppVersion, which separates your playerbase in matchmaking.</summary>
         /// <remarks>
@@ -398,16 +398,6 @@ namespace Photon.Pun
             }
         }
 
-        /// <summary>
-        /// Used to enable reaction to CloseConnection events. Default: false.
-        /// </summary>
-        /// <remarks>
-        /// Using CloseConnection is a security risk, as exploiters can send the event as Master Client.
-        ///
-        /// In best case, a game would implement this "disconnect others" independently from PUN in game-code
-        /// with some security checks.
-        /// </remarks>
-        public static bool EnableCloseConnection = false;
 
         /// <summary>
         /// The minimum difference that a Vector2 or Vector3(e.g. a transforms rotation) needs to change before we send it via a PhotonView's OnSerialize/ObservingComponent.
@@ -462,7 +452,8 @@ namespace Photon.Pun
 
                 if (offlineMode)
                 {
-                    NetworkingClient.ChangeLocalID(-1, true);
+                    NetworkingClient.ChangeLocalID(-1);
+                    //SendMonoMessage(PhotonNetworkingMessage.OnConnectedToMaster);
                     NetworkingClient.ConnectionCallbackTargets.OnConnectedToMaster();
                 }
                 else
@@ -1024,34 +1015,19 @@ namespace Photon.Pun
         /// </summary>
         static PhotonNetwork()
         {
-            #if !UNITY_EDITOR
-            StaticReset();  // in builds, we just reset/init the client once
-            #else
-
-                #if UNITY_2019_4_OR_NEWER
-                if (NetworkingClient == null)
-                {
-                    NetworkingClient = new LoadBalancingClient();
-                }
-                #else
-                StaticReset();  // in OLDER unity editor versions there is no RuntimeInitializeOnLoadMethod, so call reset
-                #endif
-
+            #if !UNITY_EDITOR || (UNITY_EDITOR && !UNITY_2019_4_OR_NEWER)
+            StaticReset();
             #endif
         }
 
-        #if UNITY_EDITOR && UNITY_2019_4_OR_NEWER
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        #if UNITY_2019_4_OR_NEWER && UNITY_EDITOR
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         #endif
         private static void StaticReset()
         {
             #if UNITY_EDITOR
-            if (!EditorApplication.isPlayingOrWillChangePlaymode)
-            {
-                return;
-            }
+            if (!EditorApplication.isPlayingOrWillChangePlaymode) return;
             #endif
-
             // This clear is for when Domain Reloading is disabled. Typically will already be empty.
             monoRPCMethodsCache.Clear();
 
@@ -1151,9 +1127,7 @@ namespace Photon.Pun
 
 
             NetworkingClient.LoadBalancingPeer.TransportProtocol = appSettings.Protocol;
-            NetworkingClient.ExpectedProtocol = null;
             NetworkingClient.EnableProtocolFallback = appSettings.EnableProtocolFallback;
-            NetworkingClient.AuthMode = appSettings.AuthMode;
 
 
             IsMessageQueueRunning = true;
@@ -1371,7 +1345,7 @@ namespace Photon.Pun
 
             if (NetworkingClient == null)
             {
-                return; // Suppress error when quitting playmode in the editor
+                return; // Surpress error when quitting playmode in the editor
             }
 
             NetworkingClient.Disconnect();
@@ -1494,19 +1468,13 @@ namespace Photon.Pun
             }
         }
 
-        /// <summary>Request a client to disconnect/kick, which happens if EnableCloseConnection is set to true. Only the master client can do this.</summary>
-        /// <remarks>Only the target player gets this event. That player will disconnect if EnableCloseConnection = true.</remarks>
+        /// <summary>Request a client to disconnect (KICK). Only the master client can do this</summary>
+        /// <remarks>Only the target player gets this event. That player will disconnect automatically, which is what the others will notice, too.</remarks>
         /// <param name="kickPlayer">The Player to kick.</param>
         public static bool CloseConnection(Player kickPlayer)
         {
             if (!VerifyCanUseNetwork())
             {
-                return false;
-            }
-
-            if (!PhotonNetwork.EnableCloseConnection)
-            {
-                Debug.LogError("CloseConnection is disabled. No need to call it.");
                 return false;
             }
 
@@ -1616,7 +1584,7 @@ namespace Photon.Pun
         /// <param name="expectedCustomRoomProperties">Filters for rooms that match these custom properties (string keys and values). To ignore, pass null.</param>
         /// <param name="expectedMaxPlayers">Filters for a particular maxplayer setting. Use 0 to accept any maxPlayer value.</param>
         /// <returns>If the operation got queued and will be sent.</returns>
-        public static bool JoinRandomRoom(Hashtable expectedCustomRoomProperties, int expectedMaxPlayers)
+        public static bool JoinRandomRoom(Hashtable expectedCustomRoomProperties, byte expectedMaxPlayers)
         {
             return JoinRandomRoom(expectedCustomRoomProperties, expectedMaxPlayers, MatchmakingMode.FillRoom, null, null);
         }
@@ -1645,7 +1613,7 @@ namespace Photon.Pun
         /// <param name="sqlLobbyFilter">A filter-string for SQL-typed lobbies.</param>
         /// <param name="expectedUsers">Optional list of users (by UserId) who are expected to join this game and who you want to block a slot for.</param>
         /// <returns>If the operation got queued and will be sent.</returns>
-        public static bool JoinRandomRoom(Hashtable expectedCustomRoomProperties, int expectedMaxPlayers, MatchmakingMode matchingType, TypedLobby typedLobby, string sqlLobbyFilter, string[] expectedUsers = null)
+        public static bool JoinRandomRoom(Hashtable expectedCustomRoomProperties, byte expectedMaxPlayers, MatchmakingMode matchingType, TypedLobby typedLobby, string sqlLobbyFilter, string[] expectedUsers = null)
         {
             if (OfflineMode)
             {
@@ -1676,7 +1644,7 @@ namespace Photon.Pun
             return NetworkingClient.OpJoinRandomRoom(opParams);
         }
 
-
+        
         /// <summary>
         /// Attempts to join a room that matches the specified filter and creates a room if none found.
         /// </summary>
@@ -1692,10 +1660,10 @@ namespace Photon.Pun
         /// This client's State is set to ClientState.Joining immediately.
         ///
         /// Either IMatchmakingCallbacks.OnJoinedRoom or IMatchmakingCallbacks.OnCreatedRoom gets called.
-        ///
+        /// 
         /// Should the creation on the Master Server, IMatchmakingCallbacks.OnJoinRandomFailed gets called.
         /// Should the "join" on the Game Server fail, IMatchmakingCallbacks.OnJoinRoomFailed gets called.
-        ///
+        /// 
         ///
         /// Check the return value to make sure the operation will be called on the server.
         /// Note: There will be no callbacks if this method returned false.
@@ -2054,7 +2022,7 @@ namespace Photon.Pun
         private static void EnterOfflineRoom(string roomName, RoomOptions roomOptions, bool createdRoom)
         {
             offlineModeRoom = new Room(roomName, roomOptions, true);
-            NetworkingClient.ChangeLocalID(1, true);
+            NetworkingClient.ChangeLocalID(1);
             offlineModeRoom.masterClientId = 1;
             offlineModeRoom.AddPlayer(PhotonNetwork.LocalPlayer);
             offlineModeRoom.LoadBalancingClient = PhotonNetwork.NetworkingClient;
@@ -2199,7 +2167,7 @@ namespace Photon.Pun
         ///
         /// When done, OnRoomListUpdate gets called.
         /// </remarks>
-        /// <see href="https://doc.photonengine.com/en-us/pun/v2/lobby-and-matchmaking/matchmaking-and-lobby/#sql_lobby_type"/>
+        /// <see cref="https://doc.photonengine.com/en-us/pun/v2/lobby-and-matchmaking/matchmaking-and-lobby/#sql_lobby_type"/>
         /// <param name="typedLobby">The lobby to query. Has to be of type SqlLobby.</param>
         /// <param name="sqlLobbyFilter">The sql query statement.</param>
         /// <returns>If the operation could be sent (has to be connected).</returns>
@@ -2976,23 +2944,24 @@ namespace Photon.Pun
         }
 
 
-        ///// <summary>Finds the GameObjects with Components of a specific type (using FindObjectsOfType).</summary>
-        ///// <param name="type">Type must be a Component</param>
-        ///// <returns>HashSet with GameObjects that have a specific type of Component.</returns>
-        //public static HashSet<GameObject> FindGameObjectsWithComponent(Type type)
-        //{
-        //    HashSet<GameObject> objectsWithComponent = new HashSet<GameObject>();
-        //    Component[] targetComponents = (Component[])GameObject.FindObjectsOfType(type);
-        //    for (int index = 0; index < targetComponents.Length; index++)
-        //    {
-        //        if (targetComponents[index] != null)
-        //        {
-        //            objectsWithComponent.Add(targetComponents[index].gameObject);
-        //        }
-        //    }
+        /// <summary>Finds the GameObjects with Components of a specific type (using FindObjectsOfType).</summary>
+        /// <param name="type">Type must be a Component</param>
+        /// <returns>HashSet with GameObjects that have a specific type of Component.</returns>
+        public static HashSet<GameObject> FindGameObjectsWithComponent(Type type)
+        {
+            HashSet<GameObject> objectsWithComponent = new HashSet<GameObject>();
 
-        //    return objectsWithComponent;
-        //}
+            Component[] targetComponents = (Component[]) GameObject.FindObjectsOfType(type);
+            for (int index = 0; index < targetComponents.Length; index++)
+            {
+                if (targetComponents[index] != null)
+                {
+                    objectsWithComponent.Add(targetComponents[index].gameObject);
+                }
+            }
+
+            return objectsWithComponent;
+        }
 
 
         /// <summary>Enable/disable receiving events from a given Interest Group.</summary>
@@ -3115,7 +3084,7 @@ namespace Photon.Pun
         /// </summary>
         /// <remarks>
         /// This is a server-side feature which must be setup in the Photon Cloud Dashboard prior to use.
-        /// <see href="https://doc.photonengine.com/en-us/pun/v2/gameplay/web-extensions/webrpc"/>
+        /// <see cref="https://doc.photonengine.com/en-us/pun/v2/gameplay/web-extensions/webrpc"/>
         /// The Parameters will be converted into JSon format, so make sure your parameters are compatible.
         ///
         /// See <see cref="Photon.Realtime.IWebRpcCallback.OnWebRpcResponse"/> on how to get a response.
@@ -3199,12 +3168,11 @@ namespace Photon.Pun
             }
 
 
-            #if UNITY_EDITOR
-            // in the editor, store the settings file as it could not be loaded
-            // unless Unity still imports assets
-            if (UnityEditor.EditorApplication.isUpdating)
+            // in the editor, store the settings file as it's not loaded
+            #if  UNITY_EDITOR
+            // don't save the settings before OnProjectUpdated got called (this hints at an ongoing import/load)
+            if (!PhotonEditorUtils.ProjectChangedWasCalled)
             {
-                EditorApplication.delayCall += delegate { LoadOrCreateSettings(true); };
                 return;
             }
 
@@ -3281,29 +3249,29 @@ namespace Photon.Pun
         }
 
 
-        ///// <summary>
-        ///// Internally used by Editor scripts, called on Hierarchy change (includes scene save) to remove surplus hidden PhotonHandlers.
-        ///// </summary>
-        ///// <remarks>This is done in this class, because the Editor assembly can't access PhotonHandler.</remarks>
-        //public static void InternalCleanPhotonMonoFromSceneIfStuck()
-        //{
-        //    PhotonHandler[] photonHandlers = GameObject.FindObjectsOfType(typeof(PhotonHandler)) as PhotonHandler[];
-        //    if (photonHandlers != null && photonHandlers.Length > 0)
-        //    {
-        //        Debug.Log("Cleaning up hidden PhotonHandler instances in scene. Please save the scene to fix the problem.");
-        //        foreach (PhotonHandler photonHandler in photonHandlers)
-        //        {
-        //            // Debug.Log("Removing Handler: " + photonHandler + " photonHandler.gameObject: " + photonHandler.gameObject);
-        //            if (photonHandler.gameObject != null && photonHandler.gameObject.name == "PhotonMono")
-        //            {
-        //                photonHandler.gameObject.hideFlags = 0;
-        //                GameObject.DestroyImmediate(photonHandler.gameObject);
-        //            }
+        /// <summary>
+        /// Internally used by Editor scripts, called on Hierarchy change (includes scene save) to remove surplus hidden PhotonHandlers.
+        /// </summary>
+        /// <remarks>This is done in this class, because the Editor assembly can't access PhotonHandler.</remarks>
+        public static void InternalCleanPhotonMonoFromSceneIfStuck()
+        {
+            PhotonHandler[] photonHandlers = GameObject.FindObjectsOfType(typeof(PhotonHandler)) as PhotonHandler[];
+            if (photonHandlers != null && photonHandlers.Length > 0)
+            {
+                Debug.Log("Cleaning up hidden PhotonHandler instances in scene. Please save the scene to fix the problem.");
+                foreach (PhotonHandler photonHandler in photonHandlers)
+                {
+                    // Debug.Log("Removing Handler: " + photonHandler + " photonHandler.gameObject: " + photonHandler.gameObject);
+                    if (photonHandler.gameObject != null && photonHandler.gameObject.name == "PhotonMono")
+                    {
+                        photonHandler.gameObject.hideFlags = 0;
+                        GameObject.DestroyImmediate(photonHandler.gameObject);
+                    }
 
-        //            Component.DestroyImmediate(photonHandler);
-        //        }
-        //    }
-        //}
+                    Component.DestroyImmediate(photonHandler);
+                }
+            }
+        }
 
         #endif
 

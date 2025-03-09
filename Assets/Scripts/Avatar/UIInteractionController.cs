@@ -41,7 +41,7 @@ public class UIInteractionController : MonoBehaviour
         {
             _isUICanvasActive = true;
             uiCanvasGameObject.SetActive(true);
-            
+
             /*uiCanvasGameObject.gameObject.transform.position = new Vector3(
                 attachTransform.transform.position.x + attachTransformOffset.x,
                 attachTransform.transform.position.y + attachTransformOffset.y,

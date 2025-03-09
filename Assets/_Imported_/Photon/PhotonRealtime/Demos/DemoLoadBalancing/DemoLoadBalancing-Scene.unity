@@ -571,7 +571,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   appSettings:
     AppIdRealtime: 
-    AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
     AppVersion: 
@@ -613,7 +612,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0b3ce6748186d3468e0dbaecb38b04c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisconnectAfterKeepAlive: 0
   KeepAliveInBackground: 5000
   ApplyDontDestroyOnLoad: 1
 --- !u!1 &1364508570
