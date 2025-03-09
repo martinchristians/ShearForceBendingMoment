@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18379751, g: 0.22904092, b: 0.30379817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1715,6 +1715,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 984687396589977741, guid: fc9fa06abcea04b718eb7fd11a369202,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1266784452225290495, guid: fc9fa06abcea04b718eb7fd11a369202,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1758,7 +1763,7 @@ PrefabInstance:
     - target: {fileID: 4548103159480778591, guid: fc9fa06abcea04b718eb7fd11a369202,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4548103159526306242, guid: fc9fa06abcea04b718eb7fd11a369202,
         type: 3}
@@ -1860,10 +1865,30 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4548103160949172150, guid: fc9fa06abcea04b718eb7fd11a369202,
+    - target: {fileID: 4548103160949172154, guid: fc9fa06abcea04b718eb7fd11a369202,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: avatarBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548103160949172154, guid: fc9fa06abcea04b718eb7fd11a369202,
+        type: 3}
+      propertyPath: avatarHead
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548103160949172154, guid: fc9fa06abcea04b718eb7fd11a369202,
+        type: 3}
+      propertyPath: avatarLeftHand
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548103160949172154, guid: fc9fa06abcea04b718eb7fd11a369202,
+        type: 3}
+      propertyPath: avatarRightHand
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548103160949172154, guid: fc9fa06abcea04b718eb7fd11a369202,
+        type: 3}
+      propertyPath: avatarTransform
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4548103161133317242, guid: fc9fa06abcea04b718eb7fd11a369202,
         type: 3}
@@ -3341,7 +3366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1212188289
 Transform:
   m_ObjectHideFlags: 0
@@ -5142,7 +5167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1960591201
 Transform:
   m_ObjectHideFlags: 0

@@ -8,11 +8,10 @@ public class SpawnManager : MonoBehaviour
 
     void Start()
     {
-        if (PhotonNetwork.IsConnectedAndReady)
-        {
-            if (GenericPlayerPrefab != null && PlayerSpawnPosition != null)
-                PhotonNetwork.Instantiate(GenericPlayerPrefab.name, PlayerSpawnPosition.transform.position,
-                    PlayerSpawnPosition.transform.rotation);
-        }
+        if (!PhotonNetwork.IsConnectedAndReady) return;
+
+        if (GenericPlayerPrefab != null && PlayerSpawnPosition != null)
+            PhotonNetwork.Instantiate(GenericPlayerPrefab.name, PlayerSpawnPosition.transform.position,
+                PlayerSpawnPosition.transform.rotation);
     }
 }
