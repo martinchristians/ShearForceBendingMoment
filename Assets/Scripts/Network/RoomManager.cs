@@ -32,17 +32,17 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public void JoinExerciseRoom()
     {
-        _mapType = MultiplayerVRConstants.MapTypeValueExercise;
+        _mapType = MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE;
         ExitGames.Client.Photon.Hashtable expectedCustomRoomProperties = new ExitGames.Client.Photon.Hashtable()
-            { { MultiplayerVRConstants.MapTypeKey, _mapType } };
+            { { MultiplayerVRConstants.MAP_TYPE_KEY, _mapType } };
         PhotonNetwork.JoinRandomRoom(expectedCustomRoomProperties, maxPlayer);
     }
 
     public void JoinExperimentRoom()
     {
-        _mapType = MultiplayerVRConstants.MapTypeValueExperiment;
+        _mapType = MultiplayerVRConstants.MAP_TYPE_VALUE_EXPERIMENT;
         ExitGames.Client.Photon.Hashtable expectedCustomRoomProperties = new ExitGames.Client.Photon.Hashtable()
-            { { MultiplayerVRConstants.MapTypeKey, _mapType } };
+            { { MultiplayerVRConstants.MAP_TYPE_KEY, _mapType } };
         PhotonNetwork.JoinRandomRoom(expectedCustomRoomProperties, maxPlayer);
     }
 
@@ -73,19 +73,19 @@ public class RoomManager : MonoBehaviourPunCallbacks
         Debug.Log("Player " + PhotonNetwork.NickName + " is joining " + PhotonNetwork.CurrentRoom.Name +
                   "... Player count " + PhotonNetwork.CurrentRoom.PlayerCount);
 
-        if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey(MultiplayerVRConstants.MapTypeKey))
+        if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey(MultiplayerVRConstants.MAP_TYPE_KEY))
         {
             object mapType;
-            if (PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(MultiplayerVRConstants.MapTypeKey, out mapType))
+            if (PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(MultiplayerVRConstants.MAP_TYPE_KEY, out mapType))
             {
                 Debug.Log("Joined room with type: " + (string)mapType);
 
                 switch ((string)mapType)
                 {
-                    case MultiplayerVRConstants.MapTypeValueExercise:
+                    case MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE:
                         PhotonNetwork.LoadLevel("Exercise");
                         break;
-                    case MultiplayerVRConstants.MapTypeValueExperiment:
+                    case MultiplayerVRConstants.MAP_TYPE_VALUE_EXPERIMENT:
                         PhotonNetwork.LoadLevel("Experiment");
                         break;
                 }
@@ -110,9 +110,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
         foreach (RoomInfo room in roomList)
         {
             Debug.Log(room.Name);
-            if (room.Name.Contains(MultiplayerVRConstants.MapTypeValueExercise))
+            if (room.Name.Contains(MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE))
                 occupancyRateTextExercise.text = room.PlayerCount + "/" + 20;
-            else if (room.Name.Contains(MultiplayerVRConstants.MapTypeValueExperiment))
+            else if (room.Name.Contains(MultiplayerVRConstants.MAP_TYPE_VALUE_EXPERIMENT))
                 occupancyRateTextExperiment.text = room.PlayerCount + "/" + 20;
 
             Debug.Log("Room: " + room.Name + " is filled with " + room.PlayerCount + " player.");
@@ -132,10 +132,10 @@ public class RoomManager : MonoBehaviourPunCallbacks
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = maxPlayer;
 
-        string[] roomPropsInLobby = { MultiplayerVRConstants.MapTypeKey };
+        string[] roomPropsInLobby = { MultiplayerVRConstants.MAP_TYPE_KEY };
 
         ExitGames.Client.Photon.Hashtable customRoomProperties = new ExitGames.Client.Photon.Hashtable()
-            { { MultiplayerVRConstants.MapTypeKey, _mapType } };
+            { { MultiplayerVRConstants.MAP_TYPE_KEY, _mapType } };
 
         roomOptions.CustomRoomPropertiesForLobby = roomPropsInLobby;
         roomOptions.CustomRoomProperties = customRoomProperties;

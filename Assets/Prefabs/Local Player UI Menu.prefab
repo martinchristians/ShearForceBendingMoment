@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 930434389981890419}
   - component: {fileID: 930434389981890380}
   m_Layer: 5
-  m_Name: Local Player Menu
+  m_Name: Local Player UI Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &930434389981890419
 MonoBehaviour:
   m_ObjectHideFlags: 0
