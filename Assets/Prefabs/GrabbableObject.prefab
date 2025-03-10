@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1816601598814284878}
   - component: {fileID: 5672773474770276982}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 8570278794744821354}
   - component: {fileID: 2564325880809017648}
   - component: {fileID: 4339186851627070226}
-  - component: {fileID: 475536714416204574}
+  - component: {fileID: 4202403998770843354}
   m_Layer: 9
   m_Name: GrabbableObject
   m_TagString: Untagged
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 475536714416204574}
+      - m_Target: {fileID: 4202403998770843354}
         m_TargetAssemblyTypeName: NetworkedGrabbing, Assembly-CSharp
         m_MethodName: OnSelectEntered
         m_Mode: 1
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_SelectExited:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 475536714416204574}
+      - m_Target: {fileID: 4202403998770843354}
         m_TargetAssemblyTypeName: NetworkedGrabbing, Assembly-CSharp
         m_MethodName: OnSelectExited
         m_Mode: 1
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
---- !u!114 &475536714416204574
+--- !u!114 &4202403998770843354
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2833145025706477259}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b67566a3c00b437bac3ea0bf469b0a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 772f8aa5c2ec7415493caa5de955a281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8913010802293715172
@@ -298,7 +298,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9095046810758891258}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Attach Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
