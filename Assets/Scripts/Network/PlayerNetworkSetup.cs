@@ -3,6 +3,8 @@ using Photon.Pun;
 
 public class PlayerNetworkSetup : MonoBehaviourPunCallbacks
 {
+    public GameObject avatar;
+
     public GameObject avatarHeadGameObject;
     public GameObject avatarBodyGameObject;
 
@@ -29,6 +31,8 @@ public class PlayerNetworkSetup : MonoBehaviourPunCallbacks
                 photonView.RPC("InitializeSelectedAvatarBodyModel", RpcTarget.AllBuffered,
                     (int)avatarBodySelectionNumber);
             }
+
+            avatar.AddComponent<AudioListener>();
 
             SetLayerRecursively(avatarHeadGameObject, 6);
             SetLayerRecursively(avatarBodyGameObject, 7);

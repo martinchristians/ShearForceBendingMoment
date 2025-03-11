@@ -3031,6 +3031,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6620848681416660319, guid: fc9fa06abcea04b718eb7fd11a369202,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6802272775228784168, guid: fc9fa06abcea04b718eb7fd11a369202,
         type: 3}
       propertyPath: avatarBodySelectionModels.Array.size
