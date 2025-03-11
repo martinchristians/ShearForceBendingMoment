@@ -1,9 +1,11 @@
 using UnityEngine;
 using Photon.Pun;
+using TMPro;
 
 public class PlayerNetworkSetup : MonoBehaviourPunCallbacks
 {
     public GameObject avatar;
+    public TextMeshProUGUI playerName;
 
     public GameObject avatarHeadGameObject;
     public GameObject avatarBodyGameObject;
@@ -13,6 +15,9 @@ public class PlayerNetworkSetup : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        if (playerName != null)
+            playerName.text = photonView.Owner.NickName;
+
         if (photonView.IsMine)
         {
             //Get avatar selection data
