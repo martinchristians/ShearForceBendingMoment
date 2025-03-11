@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Logic/Logic.unity
     guid: b3049d4882a276f4dbae81c84962e9ed
   - enabled: 1

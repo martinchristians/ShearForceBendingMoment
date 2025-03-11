@@ -1715,6 +1715,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 564985019413158829, guid: fc9fa06abcea04b718eb7fd11a369202,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 984687396589977741, guid: fc9fa06abcea04b718eb7fd11a369202,
         type: 3}
       propertyPath: m_IsActive
@@ -1879,6 +1884,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7004172587016783072, guid: fc9fa06abcea04b718eb7fd11a369202,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8693920365777267513, guid: fc9fa06abcea04b718eb7fd11a369202,
         type: 3}
@@ -2452,7 +2462,7 @@ GameObject:
   - component: {fileID: 898550206}
   m_Layer: 8
   m_Name: SchoolFloor
-  m_TagString: Floor
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
