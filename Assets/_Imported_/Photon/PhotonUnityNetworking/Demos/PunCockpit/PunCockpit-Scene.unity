@@ -3056,7 +3056,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: C0 = 'Hello'
 --- !u!222 &70353890
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3850,6 +3850,10 @@ PrefabInstance:
       propertyPath: m_Group
       value: 
       objectReference: {fileID: 896501195}
+    - target: {fileID: 22402928, guid: 192c18d73e55e466d89edd9bc2ab936d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 22479552, guid: 192c18d73e55e466d89edd9bc2ab936d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7043,6 +7047,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: Room Options
       objectReference: {fileID: 0}
+    - target: {fileID: 22402928, guid: 192c18d73e55e466d89edd9bc2ab936d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 22479552, guid: 192c18d73e55e466d89edd9bc2ab936d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7920,6 +7928,10 @@ PrefabInstance:
 
 '
       objectReference: {fileID: 0}
+    - target: {fileID: 22402928, guid: 192c18d73e55e466d89edd9bc2ab936d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000015258789
+      objectReference: {fileID: 0}
     - target: {fileID: 22479552, guid: 192c18d73e55e466d89edd9bc2ab936d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -8086,7 +8098,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: MyLobby
 --- !u!222 &199461722
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17227,7 +17239,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12.520002, y: 0}
+  m_AnchoredPosition: {x: -12.519989, y: 0}
   m_SizeDelta: {x: -34.959995, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &473037198
@@ -19178,7 +19190,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 292.1772, y: -5}
+  m_AnchoredPosition: {x: 419.24115, y: -5}
   m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &513624918
@@ -37627,6 +37639,10 @@ PrefabInstance:
       propertyPath: m_Group
       value: 
       objectReference: {fileID: 18053700}
+    - target: {fileID: 22402928, guid: 192c18d73e55e466d89edd9bc2ab936d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000015258789
+      objectReference: {fileID: 0}
     - target: {fileID: 22479552, guid: 192c18d73e55e466d89edd9bc2ab936d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -38859,7 +38875,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 1.0
 --- !u!222 &1025704343
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -41595,7 +41611,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 111274817}
   m_HandleRect: {fileID: 111274816}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -50027,7 +50043,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12.520002, y: 0}
+  m_AnchoredPosition: {x: -12.519989, y: 0}
   m_SizeDelta: {x: -34.959995, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1353513185
@@ -58821,6 +58837,10 @@ PrefabInstance:
 
 '
       objectReference: {fileID: 0}
+    - target: {fileID: 22402928, guid: 192c18d73e55e466d89edd9bc2ab936d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000015258789
+      objectReference: {fileID: 0}
     - target: {fileID: 22479552, guid: 192c18d73e55e466d89edd9bc2ab936d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -65390,6 +65410,10 @@ PrefabInstance:
     - target: {fileID: 11473958, guid: 192c18d73e55e466d89edd9bc2ab936d, type: 3}
       propertyPath: m_Text
       value: Properties
+      objectReference: {fileID: 0}
+    - target: {fileID: 22402928, guid: 192c18d73e55e466d89edd9bc2ab936d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000015258789
       objectReference: {fileID: 0}
     - target: {fileID: 22479552, guid: 192c18d73e55e466d89edd9bc2ab936d, type: 3}
       propertyPath: m_Pivot.x
@@ -76795,7 +76819,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 856205443}
   m_HandleRect: {fileID: 856205442}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
