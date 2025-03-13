@@ -11,8 +11,8 @@ public class AvatarInputConverter : MonoBehaviour
 
     //XR Origin
     public Transform xrCamera;
-    public Transform xrHandRightTeleport;
-    public Transform xrHandLeftBase;
+    public Transform xrHandRight;
+    public Transform xrHandLeft;
     public Vector3 headPositionOffset;
     public Vector3 handRotationOffset;
 
@@ -32,14 +32,14 @@ public class AvatarInputConverter : MonoBehaviour
             Quaternion.Euler(new Vector3(0, avatarHead.rotation.eulerAngles.y, 0)), 0.5f);
 
         //AvatarRightHand
-        avatarRightHand.position = Vector3.Lerp(avatarRightHand.position, xrHandRightTeleport.position, 0.5f);
+        avatarRightHand.position = Vector3.Lerp(avatarRightHand.position, xrHandRight.position, 0.5f);
         avatarRightHand.rotation =
-            Quaternion.Lerp(avatarRightHand.rotation, xrHandRightTeleport.rotation, 0.5f) *
+            Quaternion.Lerp(avatarRightHand.rotation, xrHandRight.rotation, 0.5f) *
             Quaternion.Euler(handRotationOffset);
 
         //AvatarLeftHand
-        avatarLeftHand.position = Vector3.Lerp(avatarLeftHand.position, xrHandLeftBase.position, 0.5f);
-        avatarLeftHand.rotation = Quaternion.Lerp(avatarLeftHand.rotation, xrHandLeftBase.rotation, 0.5f) *
+        avatarLeftHand.position = Vector3.Lerp(avatarLeftHand.position, xrHandLeft.position, 0.5f);
+        avatarLeftHand.rotation = Quaternion.Lerp(avatarLeftHand.rotation, xrHandLeft.rotation, 0.5f) *
                                   Quaternion.Euler(handRotationOffset);
     }
 

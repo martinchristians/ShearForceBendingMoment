@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1816601598814284878}
   - component: {fileID: 5672773474770276982}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +298,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9095046810758891258}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Attach Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
