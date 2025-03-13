@@ -9,23 +9,15 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         var xrSettings = XRGeneralSettings.Instance;
-        if (xrSettings == null)
-        {
-            Debug.Log("XRSettings is null");
-            return;
-        }
+        if (xrSettings == null) return;
 
         var xrManager = xrSettings.Manager;
-        if (xrManager == null)
-        {
-            Debug.Log("XRManager is null");
-            return;
-        }
+        if (xrManager == null) return;
 
         var xrLoader = xrManager.activeLoader;
         if (xrLoader == null)
         {
-            Debug.Log("XRLoader is null");
+            Debug.Log("Play in Desktop mode");
             xrOrigin.SetActive(false);
             desktopCharacter.SetActive(true);
             return;
