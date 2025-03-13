@@ -776,11 +776,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 288284636242819731, guid: fc9fa06abcea04b718eb7fd11a369202,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 564985019413158829, guid: fc9fa06abcea04b718eb7fd11a369202,
         type: 3}
       propertyPath: m_IsActive
@@ -791,12 +786,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1393626722570698014, guid: fc9fa06abcea04b718eb7fd11a369202,
+    - target: {fileID: 1266784451359640465, guid: fc9fa06abcea04b718eb7fd11a369202,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2109187066455808030, guid: fc9fa06abcea04b718eb7fd11a369202,
+    - target: {fileID: 1393626722570698014, guid: fc9fa06abcea04b718eb7fd11a369202,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -896,6 +891,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5543345524178148030, guid: fc9fa06abcea04b718eb7fd11a369202,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5552261156089491307, guid: fc9fa06abcea04b718eb7fd11a369202,
         type: 3}
       propertyPath: m_IsActive
@@ -990,6 +990,11 @@ PrefabInstance:
         type: 3}
       propertyPath: avatarHeadSelectionModels.Array.data[5]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241281601083703265, guid: fc9fa06abcea04b718eb7fd11a369202,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7863890461261079659, guid: fc9fa06abcea04b718eb7fd11a369202,
         type: 3}

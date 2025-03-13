@@ -6,8 +6,6 @@ public class LoginManager : MonoBehaviourPunCallbacks
 {
     public TMP_InputField playerInputName;
 
-    public Test_MakeASound test;
-
     #region UI Callback
 
     public void ConnectAnonymously()
@@ -19,7 +17,7 @@ public class LoginManager : MonoBehaviourPunCallbacks
 
     public void ConnectWithName()
     {
-        PhotonNetwork.NickName = playerInputName != null ? playerInputName.text : "1";
+        PhotonNetwork.NickName = playerInputName.text == "" ? "1" : playerInputName.text;
 
         PhotonNetwork.ConnectUsingSettings();
     }
@@ -36,7 +34,6 @@ public class LoginManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected! Player name: " + PhotonNetwork.NickName);
-        test.MakeASound();
 
         PhotonNetwork.LoadLevel("Tutorial");
     }

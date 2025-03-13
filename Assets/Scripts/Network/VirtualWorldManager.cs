@@ -17,7 +17,7 @@ public class VirtualWorldManager : MonoBehaviourPunCallbacks
         instance = this;
     }
 
-    public void LeaveRoomAndLoadHomeScene()
+    public void LeaveRoomAndLoadPreviousRoom()
     {
         PhotonNetwork.LeaveRoom();
     }
