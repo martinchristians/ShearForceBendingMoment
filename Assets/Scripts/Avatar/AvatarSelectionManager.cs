@@ -3,13 +3,12 @@ using UnityEngine;
 
 public class AvatarSelectionManager : MonoBehaviour
 {
-    public AvatarInputConverter avatarInputConverter;
-
-    [HideInInspector] public int avatarHeadSelectionNumber;
-    [HideInInspector] public int avatarBodySelectionNumber;
-
     public GameObject[] avatarHeadPlayerModels;
     public GameObject[] avatarBodyPlayerModels;
+
+    private AvatarInputConverter _avatarInputConverter;
+    private int _avatarHeadSelectionNumber;
+    private int _avatarBodySelectionNumber;
 
     public static AvatarSelectionManager instance;
 
@@ -26,65 +25,67 @@ public class AvatarSelectionManager : MonoBehaviour
 
     private void Start()
     {
+        _avatarInputConverter = FindObjectOfType<AvatarInputConverter>();
+
         //Display selected avatar head model
         if (PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue(MultiplayerVRConstants.AVATAR_HEAD_SELECTION_NUMBER,
                 out var storedAvatarHeadSelectionNumber))
         {
             Debug.Log("Stored avatar head selection number: " + (int)storedAvatarHeadSelectionNumber);
-            avatarHeadSelectionNumber = (int)storedAvatarHeadSelectionNumber;
+            _avatarHeadSelectionNumber = (int)storedAvatarHeadSelectionNumber;
         }
         else
-            avatarHeadSelectionNumber = 0;
+            _avatarHeadSelectionNumber = 0;
 
-        LoadAvatarHeadModelAt(avatarHeadSelectionNumber);
+        LoadAvatarHeadModelAt(_avatarHeadSelectionNumber);
 
         //Display selected avatar body model
         if (PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue(MultiplayerVRConstants.AVATAR_BODY_SELECTION_NUMBER,
                 out var storedAvatarBodySelectionNumber))
         {
             Debug.Log("Stored avatar body selection number: " + (int)storedAvatarBodySelectionNumber);
-            avatarBodySelectionNumber = (int)storedAvatarBodySelectionNumber;
+            _avatarBodySelectionNumber = (int)storedAvatarBodySelectionNumber;
         }
         else
-            avatarHeadSelectionNumber = 0;
+            _avatarHeadSelectionNumber = 0;
 
-        LoadAvatarBodyModelAt(avatarBodySelectionNumber);
+        LoadAvatarBodyModelAt(_avatarBodySelectionNumber);
     }
 
     public void NextAvatarHead()
     {
-        avatarHeadSelectionNumber += 1;
-        if (avatarHeadSelectionNumber >= avatarHeadPlayerModels.Length)
-            avatarHeadSelectionNumber = 0;
+        _avatarHeadSelectionNumber += 1;
+        if (_avatarHeadSelectionNumber >= avatarHeadPlayerModels.Length)
+            _avatarHeadSelectionNumber = 0;
 
-        LoadAvatarHeadModelAt(avatarHeadSelectionNumber);
+        LoadAvatarHeadModelAt(_avatarHeadSelectionNumber);
     }
 
     public void PreviousAvatarHead()
     {
-        avatarHeadSelectionNumber -= 1;
-        if (avatarHeadSelectionNumber < 0)
-            avatarHeadSelectionNumber = avatarHeadPlayerModels.Length - 1;
+        _avatarHeadSelectionNumber -= 1;
+        if (_avatarHeadSelectionNumber < 0)
+            _avatarHeadSelectionNumber = avatarHeadPlayerModels.Length - 1;
 
-        LoadAvatarHeadModelAt(avatarHeadSelectionNumber);
+        LoadAvatarHeadModelAt(_avatarHeadSelectionNumber);
     }
 
     public void NextAvatarBody()
     {
-        avatarBodySelectionNumber += 1;
-        if (avatarBodySelectionNumber >= avatarBodyPlayerModels.Length)
-            avatarBodySelectionNumber = 0;
+        _avatarBodySelectionNumber += 1;
+        if (_avatarBodySelectionNumber >= avatarBodyPlayerModels.Length)
+            _avatarBodySelectionNumber = 0;
 
-        LoadAvatarBodyModelAt(avatarBodySelectionNumber);
+        LoadAvatarBodyModelAt(_avatarBodySelectionNumber);
     }
 
     public void PreviousAvatarBody()
     {
-        avatarBodySelectionNumber -= 1;
-        if (avatarBodySelectionNumber < 0)
-            avatarBodySelectionNumber = avatarBodyPlayerModels.Length - 1;
+        _avatarBodySelectionNumber -= 1;
+        if (_avatarBodySelectionNumber < 0)
+            _avatarBodySelectionNumber = avatarBodyPlayerModels.Length - 1;
 
-        LoadAvatarBodyModelAt(avatarBodySelectionNumber);
+        LoadAvatarBodyModelAt(_avatarBodySelectionNumber);
     }
 
     private void LoadAvatarHeadModelAt(int avatarHeadIndex)
@@ -94,10 +95,10 @@ public class AvatarSelectionManager : MonoBehaviour
         avatarHeadPlayerModels[avatarHeadIndex].SetActive(true);
         avatarHeadPlayerModels[avatarHeadIndex].layer = 6;
 
-        avatarInputConverter.avatarHead = avatarHeadPlayerModels[avatarHeadIndex].GetComponent<Transform>();
+        _avatarInputConverter.avatarHead = avatarHeadPlayerModels[avatarHeadIndex].GetComponent<Transform>();
 
         ExitGames.Client.Photon.Hashtable playerSelectionProperty = new ExitGames.Client.Photon.Hashtable()
-            { { MultiplayerVRConstants.AVATAR_HEAD_SELECTION_NUMBER, avatarHeadSelectionNumber } };
+            { { MultiplayerVRConstants.AVATAR_HEAD_SELECTION_NUMBER, _avatarHeadSelectionNumber } };
         PhotonNetwork.LocalPlayer.SetCustomProperties(playerSelectionProperty);
     }
 
@@ -107,10 +108,10 @@ public class AvatarSelectionManager : MonoBehaviour
             bodyModelPlayer.SetActive(false);
         avatarBodyPlayerModels[avatarBodyIndex].SetActive(true);
 
-        avatarInputConverter.avatarBody = avatarBodyPlayerModels[avatarBodyIndex].GetComponent<Transform>();
+        _avatarInputConverter.avatarBody = avatarBodyPlayerModels[avatarBodyIndex].GetComponent<Transform>();
 
         ExitGames.Client.Photon.Hashtable playerSelectionProperty = new ExitGames.Client.Photon.Hashtable()
-            { { MultiplayerVRConstants.AVATAR_BODY_SELECTION_NUMBER, avatarBodySelectionNumber } };
+            { { MultiplayerVRConstants.AVATAR_BODY_SELECTION_NUMBER, _avatarBodySelectionNumber } };
         PhotonNetwork.LocalPlayer.SetCustomProperties(playerSelectionProperty);
     }
 }

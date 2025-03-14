@@ -6,6 +6,21 @@ public class GameManager : MonoBehaviour
     public GameObject xrOrigin;
     public GameObject desktopCharacter;
 
+    [HideInInspector] public bool isVrPlayer;
+
+    public static GameManager instance;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+    }
+
     private void Start()
     {
         var xrSettings = XRGeneralSettings.Instance;
@@ -25,5 +40,7 @@ public class GameManager : MonoBehaviour
 
         xrOrigin.SetActive(true);
         desktopCharacter.SetActive(false);
+
+        isVrPlayer = true;
     }
 }
