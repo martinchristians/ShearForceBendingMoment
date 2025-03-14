@@ -6638,7 +6638,7 @@ MonoBehaviour:
   m_InteractionLayers:
     m_Bits: 2
   m_SelectMode: 1
-  m_CustomReticle: {fileID: 5889370645602775074, guid: 844c79a6ed32a460a977986ca02c1e59,
+  m_CustomReticle: {fileID: 927588885289993254, guid: eab6627f6f5d7489aad2048cc42a2804,
     type: 3}
   m_FirstHoverEntered:
     m_PersistentCalls:
