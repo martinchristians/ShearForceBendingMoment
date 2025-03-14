@@ -27,7 +27,7 @@ public class AvatarInputConverter : MonoBehaviour
 
     private void Update()
     {
-        if (avatarTransform == null) ReferencingAvatar();
+        if (!avatarTransform) ReferencingAvatar();
 
         if (_isVRPlayer)
         {
@@ -66,8 +66,6 @@ public class AvatarInputConverter : MonoBehaviour
         avatarTransform = GameObject.FindGameObjectWithTag("Avatar").GetComponent<Transform>();
         avatarHead = GameObject.FindGameObjectWithTag("AvatarHead").GetComponent<Transform>();
         avatarBody = GameObject.FindGameObjectWithTag("AvatarBody").GetComponent<Transform>();
-
-        if (!_isVRPlayer) return;
         avatarRightHand = GameObject.FindGameObjectWithTag("AvatarRightHand").GetComponent<Transform>();
         avatarLeftHand = GameObject.FindGameObjectWithTag("AvatarLeftHand").GetComponent<Transform>();
     }

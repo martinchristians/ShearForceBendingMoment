@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class UISwitcherController : MonoBehaviour
+public class Test_UISwitcherController : MonoBehaviour
 {
     [SerializeField] private InputActionReference inputActionReferenceUISwitcher;
     public GameObject menuGameObject;
