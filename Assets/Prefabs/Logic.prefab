@@ -3075,7 +3075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4548103160949172155
 Transform:
   m_ObjectHideFlags: 0
@@ -3155,8 +3155,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   avatarTransform: {fileID: 2583713936571666198}
-  avatarHead: {fileID: 4548103160191651564}
-  avatarBody: {fileID: 4548103160652117558}
+  avatarHead: {fileID: 5306392850353453581}
+  avatarBody: {fileID: 5224809594037573891}
   avatarRightHand: {fileID: 4548103159909276719}
   avatarLeftHand: {fileID: 4548103159389866965}
   headPositionOffset: {x: 0, y: -0.9, z: 0}
@@ -4273,8 +4273,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   avatarTransform: {fileID: 2583713936571666198}
-  avatarHead: {fileID: 4548103160191651564}
-  avatarBody: {fileID: 4548103160652117558}
+  avatarHead: {fileID: 5306392850353453581}
+  avatarBody: {fileID: 5224809594037573891}
   avatarRightHand: {fileID: 4548103159909276719}
   avatarLeftHand: {fileID: 4548103159389866965}
   headPositionOffset: {x: 0, y: -1.375, z: 0}
@@ -4581,7 +4581,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5031412327547126167
 Transform:
   m_ObjectHideFlags: 0

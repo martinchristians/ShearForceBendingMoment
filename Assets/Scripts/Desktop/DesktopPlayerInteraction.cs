@@ -28,12 +28,20 @@ public class DesktopPlayerInteraction : MonoBehaviour
                 if (!_networkedGrabbing)
                 {
                     if (_raycastHit.transform.TryGetComponent(out _networkedGrabbing))
+                    {
                         _networkedGrabbing.OnSelectEntered(mainCamera);
+
+                        int grabbedLayerMask = LayerMask.GetMask("Grabbed");
+                        layerMask |= grabbedLayerMask;
+                    }
                 }
                 else
                 {
                     _networkedGrabbing.OnSelectExited();
                     _networkedGrabbing = null;
+
+                    int grabbedLayerMask = LayerMask.GetMask("Grabbed");
+                    layerMask &= ~grabbedLayerMask;
                 }
             }
         }
