@@ -9,6 +9,7 @@ public class NetworkedGrabbing : MonoBehaviourPunCallbacks, IPunOwnershipCallbac
     private AttachableObject _attachableObject;
 
     private bool _isObjectBeingHeld;
+    private bool _isAttached;
 
     //For desktop player
     private Transform _playerCamera;
@@ -21,12 +22,8 @@ public class NetworkedGrabbing : MonoBehaviourPunCallbacks, IPunOwnershipCallbac
 
     private void Awake()
     {
-        _photonView = GetComponent<PhotonView>();
-    }
-
-    private void Start()
-    {
         _rb = GetComponent<Rigidbody>();
+        _photonView = GetComponent<PhotonView>();
         _attachableObject = GetComponent<AttachableObject>();
     }
 
@@ -51,6 +48,8 @@ public class NetworkedGrabbing : MonoBehaviourPunCallbacks, IPunOwnershipCallbac
         }
     }
 
+    #region Grabbing
+
     public void OnSelectEntered(Transform playerCamera)
     {
         if (_isObjectBeingHeld) return;
@@ -70,42 +69,6 @@ public class NetworkedGrabbing : MonoBehaviourPunCallbacks, IPunOwnershipCallbac
         }
         else
             StartLocalGrabbing();
-    }
-
-    public void OnSelectExited()
-    {
-        Debug.Log(gameObject.name + " is released!");
-
-        if (_photonView && PhotonNetwork.IsConnected && PhotonNetwork.InRoom)
-        {
-            _photonView.RPC("StopNetworkGrabbing", RpcTarget.AllBuffered);
-        }
-        else
-            StopLocalGrabbing();
-    }
-
-    private void TransferOwnership()
-    {
-        if (_photonView && PhotonNetwork.IsConnected && PhotonNetwork.InRoom)
-            _photonView.RequestOwnership();
-    }
-
-    public void OnOwnershipRequest(PhotonView targetView, Player requestingPlayer)
-    {
-        if (targetView != _photonView) return;
-
-        Debug.Log("... Player-" + requestingPlayer.NickName + " requests ownership for object-" + targetView.name);
-        _photonView.TransferOwnership(requestingPlayer);
-    }
-
-    public void OnOwnershipTransfered(PhotonView targetView, Player previousOwner)
-    {
-        Debug.Log("... Ownership is transferred to" + targetView.name + " from " + previousOwner.NickName);
-    }
-
-    public void OnOwnershipTransferFailed(PhotonView targetView, Player senderOfFailedRequest)
-    {
-        Debug.Log("... Failed to transfer ownership!");
     }
 
     [PunRPC]
@@ -132,6 +95,22 @@ public class NetworkedGrabbing : MonoBehaviourPunCallbacks, IPunOwnershipCallbac
         }
     }
 
+    #endregion
+
+    #region Releasing
+
+    public void OnSelectExited()
+    {
+        Debug.Log(gameObject.name + " is released!");
+
+        if (_photonView && PhotonNetwork.IsConnected && PhotonNetwork.InRoom)
+        {
+            _photonView.RPC("StopNetworkGrabbing", RpcTarget.AllBuffered);
+        }
+        else
+            StopLocalGrabbing();
+    }
+
     [PunRPC]
     public void StopNetworkGrabbing()
     {
@@ -150,12 +129,19 @@ public class NetworkedGrabbing : MonoBehaviourPunCallbacks, IPunOwnershipCallbac
         {
             _playerCamera = null;
         }
+
+        //Update the state of objects on attachable area
+        if (_photonView.IsMine)
+        {
+            _photonView.RPC("SyncAttachmentState", RpcTarget.AllBuffered, _isAttached);
+        }
     }
 
     private void CheckIfReleasedOnAttachableContainer()
     {
         if (!_attachableObject)
         {
+            _isAttached = false;
             _rb.isKinematic = false;
             _rb.useGravity = true;
             _rb.freezeRotation = false;
@@ -167,11 +153,13 @@ public class NetworkedGrabbing : MonoBehaviourPunCallbacks, IPunOwnershipCallbac
             if (_attachableObject.isAttachableContainerFilled)
             {
                 Debug.Log("Released and detached");
+                _isAttached = false;
                 _attachableObject.Detach();
             }
             else
             {
                 Debug.Log("Released outside container");
+                _isAttached = false;
             }
 
             _rb.isKinematic = false;
@@ -181,6 +169,7 @@ public class NetworkedGrabbing : MonoBehaviourPunCallbacks, IPunOwnershipCallbac
         else
         {
             Debug.Log("Released inside container");
+            _isAttached = true;
             _attachableObject.Attach();
 
             _rb.isKinematic = true;
@@ -188,4 +177,34 @@ public class NetworkedGrabbing : MonoBehaviourPunCallbacks, IPunOwnershipCallbac
             _rb.freezeRotation = true;
         }
     }
+
+    #endregion
+
+    #region Ownership
+
+    private void TransferOwnership()
+    {
+        if (_photonView && PhotonNetwork.IsConnected && PhotonNetwork.InRoom)
+            _photonView.RequestOwnership();
+    }
+
+    public void OnOwnershipRequest(PhotonView targetView, Player requestingPlayer)
+    {
+        if (targetView != _photonView) return;
+
+        Debug.Log("... Player-" + requestingPlayer.NickName + " requests ownership for object-" + targetView.name);
+        _photonView.TransferOwnership(requestingPlayer);
+    }
+
+    public void OnOwnershipTransfered(PhotonView targetView, Player previousOwner)
+    {
+        Debug.Log("... Ownership is transferred to" + targetView.name + " from " + previousOwner.NickName);
+    }
+
+    public void OnOwnershipTransferFailed(PhotonView targetView, Player senderOfFailedRequest)
+    {
+        Debug.Log("... Failed to transfer ownership!");
+    }
+
+    #endregion
 }

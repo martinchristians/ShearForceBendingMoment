@@ -46,6 +46,7 @@ MonoBehaviour:
   - HeresWhy
   - InitializeSelectedAvatarBodyModel
   - InitializeSelectedAvatarHeadModel
+  - SyncAttachmentState
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
