@@ -13,6 +13,7 @@ public class DesktopPlayerInteraction : MonoBehaviour
 
     private NetworkedGrabbing _networkedGrabbing;
     private RaycastHit _raycastHit;
+    private Transform _overlay;
 
     void Update()
     {
@@ -31,6 +32,10 @@ public class DesktopPlayerInteraction : MonoBehaviour
                     {
                         _networkedGrabbing.OnSelectEntered(mainCamera);
 
+                        var overlay = FindComponentInChildWithTag(_raycastHit, "Overlay");
+                        overlay.GetComponent<Renderer>().enabled = true;
+                        _overlay = overlay;
+
                         int grabbedLayerMask = LayerMask.GetMask("Grabbed");
                         layerMask |= grabbedLayerMask;
                     }
@@ -39,6 +44,8 @@ public class DesktopPlayerInteraction : MonoBehaviour
                 {
                     _networkedGrabbing.OnSelectExited();
                     _networkedGrabbing = null;
+
+                    _overlay.GetComponent<Renderer>().enabled = false;
 
                     int grabbedLayerMask = LayerMask.GetMask("Grabbed");
                     layerMask &= ~grabbedLayerMask;
@@ -74,5 +81,14 @@ public class DesktopPlayerInteraction : MonoBehaviour
         }
 
         return false;
+    }
+
+    private Transform FindComponentInChildWithTag(RaycastHit hit, string tag)
+    {
+        for (int i = 0; i < hit.transform.childCount; i++)
+            if (hit.transform.GetChild(i).CompareTag(tag))
+                return hit.transform.GetChild(i);
+
+        return null;
     }
 }

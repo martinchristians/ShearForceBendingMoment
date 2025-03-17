@@ -9,6 +9,8 @@ TagManager:
   - AvatarHead
   - AvatarRightHand
   - AvatarLeftHand
+  - CinemachineTarget
+  - Overlay
   layers:
   - Default
   - TransparentFX

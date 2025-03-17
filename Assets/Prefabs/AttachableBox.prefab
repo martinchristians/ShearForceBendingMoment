@@ -191,9 +191,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6958535549218792705}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 2.4999998, y: 1.25, z: 1.2499999}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6958535549482879275}
@@ -202,7 +202,7 @@ Transform:
   - {fileID: 6958535549816294945}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!65 &3181181079792163472
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -231,6 +231,8 @@ MonoBehaviour:
   emptyBox: {fileID: 6958535549971055415}
   filledBox: {fileID: 6958535548763522760}
   attachTransform: {fileID: 6958535549816294945}
+  isDisplayPreview: 0
+  containerIndex: -1
   allowMoreThanOneAttachable: 0
   attachedObjectInsideCollider: []
 --- !u!1 &6958535549457148399

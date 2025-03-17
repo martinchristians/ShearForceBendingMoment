@@ -2,7 +2,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class NetworkedGrabbing : MonoBehaviourPunCallbacks, IPunOwnershipCallbacks
+public class NetworkedGrabbing : MonoBehaviourPunCallbacks, IPunOwnershipCallbacks, IPunObservable
 {
     private Rigidbody _rb;
     private PhotonView _photonView;
@@ -115,6 +115,12 @@ public class NetworkedGrabbing : MonoBehaviourPunCallbacks, IPunOwnershipCallbac
     public void StopNetworkGrabbing()
     {
         StopLocalGrabbing();
+
+        //Update the state of objects on attachable area
+        if (_photonView.IsMine)
+        {
+            _photonView.RPC("SyncAttachmentState", RpcTarget.AllBuffered, _isAttached);
+        }
     }
 
     private void StopLocalGrabbing()
@@ -128,12 +134,6 @@ public class NetworkedGrabbing : MonoBehaviourPunCallbacks, IPunOwnershipCallbac
         if (_playerCamera)
         {
             _playerCamera = null;
-        }
-
-        //Update the state of objects on attachable area
-        if (_photonView.IsMine)
-        {
-            _photonView.RPC("SyncAttachmentState", RpcTarget.AllBuffered, _isAttached);
         }
     }
 
@@ -204,6 +204,46 @@ public class NetworkedGrabbing : MonoBehaviourPunCallbacks, IPunOwnershipCallbac
     public void OnOwnershipTransferFailed(PhotonView targetView, Player senderOfFailedRequest)
     {
         Debug.Log("... Failed to transfer ownership!");
+    }
+
+    #endregion
+
+    #region Observable
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            //Owner sending data
+            stream.SendNext(_isAttached);
+        }
+        else
+        {
+            //Remote player receiving data
+            _isAttached = (bool)stream.ReceiveNext();
+            SyncAttachmentState(_isAttached); //Apply changes on late joiners
+        }
+    }
+
+    [PunRPC]
+    private void SyncAttachmentState(bool attached)
+    {
+        _isAttached = attached;
+
+        if (_isAttached)
+        {
+            _attachableObject.Attach();
+            _rb.isKinematic = true;
+            _rb.useGravity = false;
+            _rb.freezeRotation = true;
+        }
+        else
+        {
+            _attachableObject.Detach();
+            _rb.isKinematic = false;
+            _rb.useGravity = true;
+            _rb.freezeRotation = false;
+        }
     }
 
     #endregion
