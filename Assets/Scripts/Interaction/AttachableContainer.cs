@@ -4,57 +4,89 @@ using Photon.Pun;
 
 public class AttachableContainer : MonoBehaviourPunCallbacks
 {
-    public Renderer emptyBox;
-    public Renderer filledBox;
-    public Transform attachTransform;
-    public bool isDisplayPreview;
-
-    public int containerIndex = -1;
-    public bool allowMoreThanOneAttachable;
     public List<AttachableObject> attachedObjectInsideCollider = new();
+    public Transform attachTransform;
 
     private AttachableObject _attachable;
 
+    public AttachableObject attachable
+    {
+        set => _attachable = value;
+    }
+
+    [Header("Attachable Box")] public bool isDisplayPreview;
+    public Renderer emptyBox;
+    public Renderer filledBox;
+
+    public int containerIndex = -1;
+
+    [Header("Attachable Beam")] public bool isDisplayOnBeam;
+    public Transform startPoint;
+    public Transform endPoint;
+
+    private void Awake()
+    {
+        if (isDisplayOnBeam) isDisplayPreview = true;
+    }
+
     private void Update()
     {
-        if (attachedObjectInsideCollider.Count > 0)
+        if (!_attachable) return;
+
+        if (!isDisplayOnBeam)
         {
+            //Attachable box
+
             if (isDisplayPreview)
             {
                 _attachable.SetTransformPreviewToAttachableContainer();
-                return;
             }
-
-            emptyBox.enabled = false;
-            filledBox.enabled = true;
         }
         else
         {
-            if (isDisplayPreview)
-            {
-                return;
-            }
+            //Attachable beam
 
-            emptyBox.enabled = true;
-            filledBox.enabled = false;
+            _attachable.SetTransformPreviewToBeam();
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        var attachable = other.gameObject.GetComponent<AttachableObject>();
-        if (!attachable) return;
+        var ao = other.gameObject.GetComponent<AttachableObject>();
+        if (!ao) return;
 
-        if (attachedObjectInsideCollider.Count > 0 && !allowMoreThanOneAttachable) return;
-
-        attachedObjectInsideCollider.Add(attachable);
-        attachable.attachableContainers.Add(this);
-
-        if (isDisplayPreview)
+        if (!isDisplayOnBeam)
         {
-            attachable.previewRenderer.enabled = true;
-            _attachable = attachable;
+            //Attachable box
+
+            if (attachedObjectInsideCollider.Count == 1) return;
+
+            if (!isDisplayPreview)
+            {
+                emptyBox.enabled = false;
+                filledBox.enabled = true;
+            }
+            else
+            {
+                ao.previewRenderer.enabled = true;
+            }
         }
+        else
+        {
+            //Attachable beam   
+
+            foreach (var _ in attachedObjectInsideCollider)
+            {
+                if (attachedObjectInsideCollider.Contains(ao)) return;
+            }
+
+            ao.previewRenderer.enabled = true;
+        }
+
+        _attachable = ao;
+
+        attachedObjectInsideCollider.Add(ao);
+        ao.attachableContainers.Add(this);
     }
 
     private void OnTriggerExit(Collider other)
@@ -62,12 +94,38 @@ public class AttachableContainer : MonoBehaviourPunCallbacks
         var attachable = other.gameObject.GetComponent<AttachableObject>();
         if (!attachable) return;
 
-        attachedObjectInsideCollider.Remove(attachable);
-        attachable.attachableContainers.Remove(this);
-
-        if (isDisplayPreview)
+        if (!isDisplayOnBeam)
         {
+            //Attachable box
+
+            if (!isDisplayPreview)
+            {
+                emptyBox.enabled = true;
+                filledBox.enabled = false;
+            }
+            else
+            {
+                attachable.previewRenderer.enabled = false;
+            }
+        }
+        else
+        {
+            //Attachable beam  
+
             attachable.previewRenderer.enabled = false;
         }
+
+        _attachable = null;
+
+        attachedObjectInsideCollider.Remove(attachable);
+        attachable.attachableContainers.Remove(this);
+        attachable.attachableContainer = null;
+    }
+
+    public BeamLine GetAttachmentLine()
+    {
+        var line = new BeamLine();
+        line.Set(startPoint.position, endPoint.position);
+        return line;
     }
 }

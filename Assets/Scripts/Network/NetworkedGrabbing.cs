@@ -84,6 +84,8 @@ public class NetworkedGrabbing : MonoBehaviourPunCallbacks, IPunOwnershipCallbac
 
         _rb.isKinematic = true;
 
+        _attachableObject.SetAttachableObjectUpdateableInsideBeamCollider();
+
         //For desktop player
         if (_playerCamera)
         {

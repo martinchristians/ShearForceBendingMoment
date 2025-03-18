@@ -114,7 +114,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6958535549218792704}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6958535548763522759
 MeshFilter:
@@ -197,9 +197,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6958535549482879275}
+  - {fileID: 6958535549816294945}
   - {fileID: 6958535549971055416}
   - {fileID: 6958535548763522761}
-  - {fileID: 6958535549816294945}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -228,13 +228,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbea6c0006ced4c08889650db6f22c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emptyBox: {fileID: 6958535549971055415}
-  filledBox: {fileID: 6958535548763522760}
+  attachedObjectInsideCollider: []
   attachTransform: {fileID: 6958535549816294945}
   isDisplayPreview: 0
+  emptyBox: {fileID: 6958535549971055415}
+  filledBox: {fileID: 6958535548763522760}
   containerIndex: -1
-  allowMoreThanOneAttachable: 0
-  attachedObjectInsideCollider: []
+  isDisplayOnBeam: 0
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 0}
 --- !u!1 &6958535549457148399
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +467,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6958535549218792704}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6958535549866936184
 GameObject:
@@ -581,7 +583,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6958535549218792704}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6958535549971055414
 MeshFilter:
