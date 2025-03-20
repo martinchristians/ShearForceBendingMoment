@@ -6,21 +6,22 @@ public class AttachableContainer : MonoBehaviourPunCallbacks
 {
     public List<AttachableObject> attachedObjectInsideCollider = new();
     public Transform attachTransform;
+    public bool isDisplayOnBeam;
+    public bool isDisplayPreview;
 
     private AttachableObject _attachable;
 
     public AttachableObject attachable
     {
+        get => _attachable;
         set => _attachable = value;
     }
 
-    [Header("Attachable Box")] public bool isDisplayPreview;
+    [Header("Attachable Box")] public int containerIndex = -1;
     public Renderer emptyBox;
     public Renderer filledBox;
 
-    public int containerIndex = -1;
-
-    [Header("Attachable Beam")] public bool isDisplayOnBeam;
+    [Header("Attachable Beam")] public bool isCalculatingForces;
     public Transform startPoint;
     public Transform endPoint;
 
@@ -119,7 +120,6 @@ public class AttachableContainer : MonoBehaviourPunCallbacks
 
         attachedObjectInsideCollider.Remove(attachable);
         attachable.attachableContainers.Remove(this);
-        attachable.attachableContainer = null;
     }
 
     public BeamLine GetAttachmentLine()

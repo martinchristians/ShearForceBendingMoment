@@ -8,7 +8,7 @@ public enum AttachableObjectType
 
 public class AttachableObjectConstants
 {
-    public const float SPOTLIGHT_WEIGHT = 6.0f;
-    public const float MOVING_HEAD_WEIGHT = 20.0f;
-    public const float SPEAKER_WEIGHT = 100.0f;
+    public const float SPOTLIGHT_FORCE = 58.8f;
+    public const float MOVING_HEAD_FORCE = 196.0f;
+    public const float SPEAKER_FORCE = 980.0f;
 }

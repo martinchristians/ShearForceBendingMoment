@@ -5,7 +5,8 @@ using Photon.Pun;
 public class AttachableObject : MonoBehaviourPunCallbacks
 {
     public AttachableObjectType attachableObjectType;
-    private float _attachableObjectTypeWeight;
+    private float _attachableObjectTypeForce;
+    public float attachableObjectTypeForce => _attachableObjectTypeForce;
 
     public AttachableContainer attachableContainer;
     public bool isAttachableContainerFilled => attachableContainer != null;
@@ -20,17 +21,20 @@ public class AttachableObject : MonoBehaviourPunCallbacks
     private Transform _transform;
     private Transform _transformPreview;
 
+    private BeamForces _beamForces;
+    private BeamForceDiagrams _beamForceDiagrams;
+
     private void Awake()
     {
         attachableContainer = null;
         attachableContainers.Clear();
 
         if (attachableObjectType == AttachableObjectType.SPOTLIGHT)
-            _attachableObjectTypeWeight = AttachableObjectConstants.SPOTLIGHT_WEIGHT;
+            _attachableObjectTypeForce = AttachableObjectConstants.SPOTLIGHT_FORCE;
         else if (attachableObjectType == AttachableObjectType.MOVING_HEAD)
-            _attachableObjectTypeWeight = AttachableObjectConstants.MOVING_HEAD_WEIGHT;
+            _attachableObjectTypeForce = AttachableObjectConstants.MOVING_HEAD_FORCE;
         else if (attachableObjectType == AttachableObjectType.SPEAKER)
-            _attachableObjectTypeWeight = AttachableObjectConstants.SPEAKER_WEIGHT;
+            _attachableObjectTypeForce = AttachableObjectConstants.SPEAKER_FORCE;
 
         _transform = gameObject.GetComponent<Transform>();
         _transformPreview = previewRenderer.GetComponent<Transform>();
@@ -59,11 +63,45 @@ public class AttachableObject : MonoBehaviourPunCallbacks
             previewRenderer.enabled = false;
 
             SetTransformToBeam();
+
+            //Start forces calculation
+            if (attachableContainer.isCalculatingForces)
+            {
+                _beamForces = attachableContainer.GetComponent<BeamForces>();
+                _beamForceDiagrams = attachableContainer.GetComponent<BeamForceDiagrams>();
+
+                if (!_beamForces && !_beamForceDiagrams) return;
+
+                Debug.Log("### Update beam forces ###");
+                _beamForces.UpdateBeamForces();
+                Debug.Log("### Update SFD & BMD ###");
+                _beamForceDiagrams.UpdateBeamForceDiagrams();
+            }
         }
     }
 
     public void Detach()
     {
+        if (!attachableContainer.isDisplayOnBeam)
+        {
+            //Attachable box
+        }
+        else
+        {
+            //Attachable beam
+
+            if (attachableContainer.isCalculatingForces)
+            {
+                Debug.Log("### Update beam forces ###");
+                _beamForces.UpdateBeamForces();
+                Debug.Log("### Update SFD & BMD ###");
+                _beamForceDiagrams.UpdateBeamForceDiagrams();
+
+                _beamForces = null;
+                _beamForceDiagrams = null;
+            }
+        }
+
         attachableContainer = null;
     }
 
@@ -99,8 +137,7 @@ public class AttachableObject : MonoBehaviourPunCallbacks
     public void SetTransformPreviewToBeam()
     {
         var line = attachableContainers[0].GetAttachmentLine();
-        var nearestPoint =
-            line.NearestPointToPoint(_transformPreview.position);
+        var nearestPoint = line.NearestPointToPoint(_transformPreview.position);
         _transformPreview.position = nearestPoint + transformAttachBeamContainerPreviewOffset.localPosition;
 
         attachableContainers[0].attachTransform.position = _transformPreview.position;

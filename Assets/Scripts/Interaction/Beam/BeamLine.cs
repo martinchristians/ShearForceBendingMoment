@@ -8,6 +8,8 @@ public class BeamLine
     Vector3 _end;
     public Vector3 end => _end;
 
+    public Vector3 direction => _end - _start;
+
     public void Set(Vector3 start, Vector3 end)
     {
         _start = start;
@@ -21,13 +23,13 @@ public class BeamLine
 
     public Vector3 NearestPointToPoint(Vector3 point)
     {
-        var value = ClosestPointToPointParameter(point);
+        var value = NearestPointToPointParameter(point);
         value = Mathf.Clamp01(value);
 
         return GetAt(value);
     }
 
-    public float ClosestPointToPointParameter(Vector3 point)
+    public float NearestPointToPointParameter(Vector3 point)
     {
         var startPoint = point - start;
         var startEnd = end - start;

@@ -86,8 +86,10 @@ public class DesktopPlayerInteraction : MonoBehaviour
     private Transform FindComponentInChildWithTag(RaycastHit hit, string tag)
     {
         for (int i = 0; i < hit.transform.childCount; i++)
+        {
             if (hit.transform.GetChild(i).CompareTag(tag))
                 return hit.transform.GetChild(i);
+        }
 
         return null;
     }
