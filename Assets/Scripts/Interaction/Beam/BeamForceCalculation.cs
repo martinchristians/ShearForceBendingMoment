@@ -18,7 +18,7 @@ public class BeamForceCalculation
 
     public float Force(int i) => forcesAndDistancesToStart[i - 1].x;
 
-    public float Distance(int i) => forcesAndDistancesToStart[i - 1].y / ScaleBeamLength;
+    public float Distance(int i) => forcesAndDistancesToStart[i - 1].y;
 
     public void CalculateBeamForces()
     {
