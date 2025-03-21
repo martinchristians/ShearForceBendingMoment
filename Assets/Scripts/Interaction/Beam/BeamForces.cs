@@ -10,6 +10,8 @@ public class BeamForces : MonoBehaviour
 
     public BeamForceCalculation beamForceCalculation = new();
 
+    public UpdateBeamCalculationUI _updateBeamCalculationUI;
+
     private void Awake()
     {
         _attachableContainer = GetComponent<AttachableContainer>();
@@ -53,31 +55,41 @@ public class BeamForces : MonoBehaviour
 
         beamForceCalculation.CalculateBeamForces();
 
-        //UI
-        ClearUIPrefab(beamForceCalculation._updateBeamCalculationUI.textForceContainer.transform);
-        ClearUIPrefab(beamForceCalculation._updateBeamCalculationUI.textDistanceContainer.transform);
-        ClearUIPrefab(beamForceCalculation._updateBeamCalculationUI.textSFContainer.transform);
-        ClearUIPrefab(beamForceCalculation._updateBeamCalculationUI.textBMContainer.transform);
+        UpdateBeamForcesUI();
+    }
+
+    private void UpdateBeamForcesUI()
+    {
+        _updateBeamCalculationUI.beamLength.text = beamForceCalculation.beamLength.ToString("F2") + " m";
+        _updateBeamCalculationUI.meter.text = beamForceCalculation.beamLength.ToString("F2") + " m";
+
+        _updateBeamCalculationUI.pinnedSupport.text = beamForceCalculation.supportLeft.ToString("F2") + " N";
+        _updateBeamCalculationUI.rollerSupport.text = beamForceCalculation.supportRight.ToString("F2") + " N";
+
+        ClearUIPrefab(_updateBeamCalculationUI.textForceContainer.transform);
+        ClearUIPrefab(_updateBeamCalculationUI.textDistanceContainer.transform);
+        ClearUIPrefab(_updateBeamCalculationUI.textSFContainer.transform);
+        ClearUIPrefab(_updateBeamCalculationUI.textBMContainer.transform);
 
         foreach (var value in beamForceCalculation.forcesAndDistancesToStart)
         {
-            InstantiateUI(beamForceCalculation._updateBeamCalculationUI.prefabForce_SF,
-                beamForceCalculation._updateBeamCalculationUI.textForceContainer.transform, value.x, " N");
+            InstantiateUI(_updateBeamCalculationUI.prefabForce_SF,
+                _updateBeamCalculationUI.textForceContainer.transform, value.x, " N");
 
-            InstantiateUI(beamForceCalculation._updateBeamCalculationUI.prefabDistance_BM,
-                beamForceCalculation._updateBeamCalculationUI.textDistanceContainer.transform, value.y, " m");
+            InstantiateUI(_updateBeamCalculationUI.prefabDistance_BM,
+                _updateBeamCalculationUI.textDistanceContainer.transform, value.y, " m");
         }
 
         foreach (var value in beamForceCalculation.shearForces)
         {
-            InstantiateUI(beamForceCalculation._updateBeamCalculationUI.prefabForce_SF,
-                beamForceCalculation._updateBeamCalculationUI.textSFContainer.transform, value, " N");
+            InstantiateUI(_updateBeamCalculationUI.prefabForce_SF,
+                _updateBeamCalculationUI.textSFContainer.transform, value, " N");
         }
 
         foreach (var value in beamForceCalculation.bendingMoments)
         {
-            InstantiateUI(beamForceCalculation._updateBeamCalculationUI.prefabDistance_BM,
-                beamForceCalculation._updateBeamCalculationUI.textBMContainer.transform, value, " N");
+            InstantiateUI(_updateBeamCalculationUI.prefabDistance_BM,
+                _updateBeamCalculationUI.textBMContainer.transform, value, " N");
         }
     }
 

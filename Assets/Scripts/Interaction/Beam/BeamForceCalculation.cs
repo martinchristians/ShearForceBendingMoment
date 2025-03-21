@@ -16,17 +16,12 @@ public class BeamForceCalculation
     public List<float> shearForces;
     public List<float> bendingMoments;
 
-    public UpdateBeamCalculationUI _updateBeamCalculationUI;
-
     public float Force(int i) => forcesAndDistancesToStart[i - 1].x;
 
     public float Distance(int i) => forcesAndDistancesToStart[i - 1].y;
 
     public void CalculateBeamForces()
     {
-        _updateBeamCalculationUI.beamLength.text = beamLength.ToString("F2") + " m";
-        _updateBeamCalculationUI.meter.text = beamLength.ToString("F2") + " m";
-
         CalculateSupports();
         CalculateShearForces();
         CalculateBendingMoments();
@@ -36,9 +31,6 @@ public class BeamForceCalculation
     {
         supportLeft = CalculateMomentFromTheLeftSide(false);
         supportRight = CalculateMomentFromTheLeftSide(true);
-
-        _updateBeamCalculationUI.pinnedSupport.text = supportLeft.ToString("F2") + " N";
-        _updateBeamCalculationUI.rollerSupport.text = supportRight.ToString("F2") + " N";
     }
 
     private float CalculateMomentFromTheLeftSide(bool fromLeft)
