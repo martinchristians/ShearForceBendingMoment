@@ -7,6 +7,11 @@ public class AssignCamera : MonoBehaviour
 
     public Canvas[] canvas;
 
+    private void Awake()
+    {
+        canvas = FindObjectsOfType<Canvas>(true);
+    }
+
     private void Start()
     {
         if (GameManager.instance.isVrPlayer)

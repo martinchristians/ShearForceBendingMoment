@@ -15,6 +15,11 @@ public class DesktopPlayerInteraction : MonoBehaviour
     private RaycastHit _raycastHit;
     private Transform _overlay;
 
+    private void Awake()
+    {
+        graphicRaycasters = FindObjectsOfType<GraphicRaycaster>(true);
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
