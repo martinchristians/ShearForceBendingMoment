@@ -91,10 +91,10 @@ public class BeamForceDiagrams : MonoBehaviour
 
         info.startPointSegment = i == 0
             ? 0f
-            : _beamForceCalculation.forcesAndDistancesToStart[i - 1].y;
+            : _beamForceCalculation.forcesAndDistancesToStart[i - 1].y / _beamForceCalculation.ScaleBeamLength;
         info.endPointSegment = i != _beamForceCalculation.NumForces
-            ? _beamForceCalculation.forcesAndDistancesToStart[i].y
-            : _beamForceCalculation.beamLength;
+            ? _beamForceCalculation.forcesAndDistancesToStart[i].y / _beamForceCalculation.ScaleBeamLength
+            : _beamForceCalculation.beamLength / _beamForceCalculation.ScaleBeamLength;
         info.shearForce = _beamForceCalculation.shearForces[i];
 
         return info;
@@ -143,10 +143,10 @@ public class BeamForceDiagrams : MonoBehaviour
 
         info.startPointSegment = i == 0
             ? 0f
-            : _beamForceCalculation.forcesAndDistancesToStart[i - 1].y;
+            : _beamForceCalculation.forcesAndDistancesToStart[i - 1].y / _beamForceCalculation.ScaleBeamLength;
         info.endPointSegment = i != _beamForceCalculation.NumForces
-            ? _beamForceCalculation.forcesAndDistancesToStart[i].y
-            : _beamForceCalculation.beamLength;
+            ? _beamForceCalculation.forcesAndDistancesToStart[i].y / _beamForceCalculation.ScaleBeamLength
+            : _beamForceCalculation.beamLength / _beamForceCalculation.ScaleBeamLength;
 
         info.momentStartPosition = _beamForceCalculation.bendingMoments[i];
         info.momentEndPosition = _beamForceCalculation.bendingMoments[i + 1];

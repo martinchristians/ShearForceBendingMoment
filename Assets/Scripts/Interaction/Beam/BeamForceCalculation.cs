@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class BeamForceCalculation
 {
     public float beamLength;
+    public float ScaleBeamLength { get; set; }
 
     public List<Vector2> forcesAndDistancesToStart = new();
     public int NumForces => forcesAndDistancesToStart.Count;
@@ -16,7 +17,8 @@ public class BeamForceCalculation
     public List<float> bendingMoments;
 
     public float Force(int i) => forcesAndDistancesToStart[i - 1].x;
-    public float Distance(int i) => forcesAndDistancesToStart[i - 1].y;
+
+    public float Distance(int i) => forcesAndDistancesToStart[i - 1].y / ScaleBeamLength;
 
     public void CalculateBeamForces()
     {

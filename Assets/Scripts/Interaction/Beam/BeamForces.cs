@@ -26,19 +26,25 @@ public class BeamForces : MonoBehaviour
     {
         var line = _attachableContainer.GetAttachmentLine();
         beamForceCalculation.forcesAndDistancesToStart.Clear();
-        beamForceCalculation.beamLength = line.direction.magnitude;
 
-        for (int i = 0; i < _attachedObjectInsideCollider.Count; i++)
-        {
-            var attachable = _attachedObjectInsideCollider[i];
+        beamForceCalculation.beamLength = beamForceCalculation.beamLength > 0
+            ? beamForceCalculation.beamLength
+            : line.direction.magnitude;
 
-            var force = attachable.attachableObjectTypeForce;
+        _attachedObjectInsideCollider.ForEach(
+            attachable =>
+            {
+                var force = attachable.attachableObjectTypeForce;
 
-            var nearestPoint = line.NearestPointToPoint(attachable.transform.position);
-            var distanceToStart = (nearestPoint - line.start).magnitude;
+                var nearestPoint = line.NearestPointToPoint(attachable.transform.position);
+                var distanceToStart = (nearestPoint - line.start).magnitude;
 
-            beamForceCalculation.forcesAndDistancesToStart.Add(new Vector2(force, distanceToStart));
-        }
+                beamForceCalculation.ScaleBeamLength = beamForceCalculation.beamLength / line.direction.magnitude;
+                distanceToStart *= beamForceCalculation.ScaleBeamLength;
+
+                beamForceCalculation.forcesAndDistancesToStart.Add(new Vector2(force, distanceToStart));
+            }
+        );
 
         beamForceCalculation.forcesAndDistancesToStart.Sort(
             (a, b) => { return Mathf.RoundToInt(Mathf.Sign(a.y - b.y)); }
