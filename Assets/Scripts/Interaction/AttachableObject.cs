@@ -22,7 +22,6 @@ public class AttachableObject : MonoBehaviourPunCallbacks
     private Transform _transformPreview;
 
     private BeamForces _beamForces;
-    private BeamForceDiagrams _beamForceDiagrams;
 
     private void Awake()
     {
@@ -68,14 +67,11 @@ public class AttachableObject : MonoBehaviourPunCallbacks
             if (attachableContainer.isCalculatingForces)
             {
                 _beamForces = attachableContainer.GetComponent<BeamForces>();
-                _beamForceDiagrams = attachableContainer.GetComponent<BeamForceDiagrams>();
 
-                if (!_beamForces && !_beamForceDiagrams) return;
+                if (!_beamForces) return;
 
                 Debug.Log("### Update beam forces ###");
                 _beamForces.UpdateBeamForces();
-                Debug.Log("### Update SFD & BMD ###");
-                _beamForceDiagrams.UpdateBeamForceDiagrams();
             }
         }
     }
@@ -94,11 +90,6 @@ public class AttachableObject : MonoBehaviourPunCallbacks
             {
                 Debug.Log("### Update beam forces ###");
                 _beamForces.UpdateBeamForces();
-                Debug.Log("### Update SFD & BMD ###");
-                _beamForceDiagrams.UpdateBeamForceDiagrams();
-
-                _beamForces = null;
-                _beamForceDiagrams = null;
             }
         }
 

@@ -4,17 +4,38 @@ using UnityEngine;
 
 public class BeamForces : MonoBehaviour
 {
-    private AttachableContainer _attachableContainer;
-
-    private List<AttachableObject> _attachedObjectInsideCollider = new();
-
     public BeamForceCalculation beamForceCalculation = new();
-
     public UpdateBeamCalculationUI _updateBeamCalculationUI;
+
+    private AttachableContainer _attachableContainer;
+    private List<AttachableObject> _attachedObjectInsideCollider = new();
+    private BeamForceDiagrams _beamForceDiagrams;
 
     private void Awake()
     {
         _attachableContainer = GetComponent<AttachableContainer>();
+        _beamForceDiagrams = GetComponent<BeamForceDiagrams>();
+    }
+
+    public void OneTimeCalculateBeamForce()
+    {
+        Debug.Log("### One Time Calculation Beam Force ###");
+
+        foreach (var ao in _attachableContainer.attachedObjectInsideCollider)
+        {
+            ao.SetTransformPreviewToBeam();
+
+            ao.attachableContainer = _attachableContainer;
+            ao.SetTransformToBeam();
+
+            ao.previewRenderer.enabled = false;
+            ao.GetComponent<Rigidbody>().isKinematic = true;
+        }
+
+        UpdateBeamForces();
+        _beamForceDiagrams.UpdateBeamForceDiagrams();
+
+        GetComponent<Collider>().enabled = false;
     }
 
     public void UpdateBeamForces()
@@ -23,6 +44,9 @@ public class BeamForces : MonoBehaviour
         _attachedObjectInsideCollider.AddRange(_attachableContainer.attachedObjectInsideCollider);
 
         GetForcesAndDistances();
+
+        Debug.Log("### Update SFD & BMD ###");
+        _beamForceDiagrams.UpdateBeamForceDiagrams();
     }
 
     private void GetForcesAndDistances()
