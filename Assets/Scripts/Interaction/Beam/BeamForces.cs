@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class BeamForces : MonoBehaviour
@@ -51,5 +52,44 @@ public class BeamForces : MonoBehaviour
         );
 
         beamForceCalculation.CalculateBeamForces();
+
+        //UI
+        ClearUIPrefab(beamForceCalculation._updateBeamCalculationUI.textForceContainer.transform);
+        ClearUIPrefab(beamForceCalculation._updateBeamCalculationUI.textDistanceContainer.transform);
+        ClearUIPrefab(beamForceCalculation._updateBeamCalculationUI.textSFContainer.transform);
+        ClearUIPrefab(beamForceCalculation._updateBeamCalculationUI.textBMContainer.transform);
+
+        foreach (var value in beamForceCalculation.forcesAndDistancesToStart)
+        {
+            InstantiateUI(beamForceCalculation._updateBeamCalculationUI.prefabForce_SF,
+                beamForceCalculation._updateBeamCalculationUI.textForceContainer.transform, value.x, " N");
+
+            InstantiateUI(beamForceCalculation._updateBeamCalculationUI.prefabDistance_BM,
+                beamForceCalculation._updateBeamCalculationUI.textDistanceContainer.transform, value.y, " m");
+        }
+
+        foreach (var value in beamForceCalculation.shearForces)
+        {
+            InstantiateUI(beamForceCalculation._updateBeamCalculationUI.prefabForce_SF,
+                beamForceCalculation._updateBeamCalculationUI.textSFContainer.transform, value, " N");
+        }
+
+        foreach (var value in beamForceCalculation.bendingMoments)
+        {
+            InstantiateUI(beamForceCalculation._updateBeamCalculationUI.prefabDistance_BM,
+                beamForceCalculation._updateBeamCalculationUI.textBMContainer.transform, value, " N");
+        }
+    }
+
+    private void ClearUIPrefab(Transform container)
+    {
+        foreach (Transform child in container)
+            Destroy(child.gameObject);
+    }
+
+    private void InstantiateUI(GameObject prefab, Transform container, float value, string unit)
+    {
+        var go = Instantiate(prefab, container);
+        go.GetComponent<TextMeshProUGUI>().text = value.ToString("F2") + unit;
     }
 }
