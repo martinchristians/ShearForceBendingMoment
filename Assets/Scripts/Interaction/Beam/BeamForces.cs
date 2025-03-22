@@ -17,27 +17,6 @@ public class BeamForces : MonoBehaviour
         _beamForceDiagrams = GetComponent<BeamForceDiagrams>();
     }
 
-    public void OneTimeCalculateBeamForce()
-    {
-        Debug.Log("### One Time Calculation Beam Force ###");
-
-        foreach (var ao in _attachableContainer.attachedObjectInsideCollider)
-        {
-            ao.SetTransformPreviewToBeam();
-
-            ao.attachableContainer = _attachableContainer;
-            ao.SetTransformToBeam();
-
-            ao.previewRenderer.enabled = false;
-            ao.GetComponent<Rigidbody>().isKinematic = true;
-        }
-
-        UpdateBeamForces();
-        _beamForceDiagrams.UpdateBeamForceDiagrams();
-
-        GetComponent<Collider>().enabled = false;
-    }
-
     public void UpdateBeamForces()
     {
         _attachedObjectInsideCollider = new List<AttachableObject>();

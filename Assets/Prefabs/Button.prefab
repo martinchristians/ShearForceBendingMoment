@@ -499,8 +499,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5144987044e864f2bab4612231b30150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSetButtonDeactiveAfterClick: 1
-  setActive: []
-  setDeactive: []
-  animator: {fileID: 0}
-  animationClip: 
+  triggerActions: []

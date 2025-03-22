@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,13 +8,7 @@ public class NetworkedTriggerButton : MonoBehaviourPunCallbacks
     private Button _button;
     private PhotonView _photonView;
 
-    [Header("Set Active GameObject")]
-    [SerializeField] private GameObject[] setActive;
-    [SerializeField] private GameObject[] setDeactive;
-
-    [Header("Play Animation")]
-    [SerializeField] private Animator animator;
-    [SerializeField] private string animTrigger;
+    [SerializeField] private List<TriggerAction> triggerActions = new();
 
     private void Awake()
     {
@@ -45,30 +40,6 @@ public class NetworkedTriggerButton : MonoBehaviourPunCallbacks
 
     private void OnLocalTrigger()
     {
-        if (setActive.Length != 0)
-            SetActive();
-
-        if (animator && animTrigger != "")
-            PlayAnimation();
-
-        if (setDeactive.Length != 0)
-            SetDeactive();
-    }
-
-    private void SetActive()
-    {
-        foreach (var go in setActive)
-            go.SetActive(true);
-    }
-
-    private void SetDeactive()
-    {
-        foreach (var go in setDeactive)
-            go.SetActive(false);
-    }
-
-    private void PlayAnimation()
-    {
-        animator.SetTrigger(animTrigger);
+        triggerActions.ForEach(ta => ta?.OnTrigger());
     }
 }

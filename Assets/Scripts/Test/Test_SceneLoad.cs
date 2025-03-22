@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class SceneLoad : MonoBehaviour
+public class Test_SceneLoad : MonoBehaviour
 {
     public SceneReference sceneReference;
     public bool setActiveScene = true;
