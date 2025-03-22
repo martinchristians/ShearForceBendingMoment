@@ -1,6 +1,8 @@
 public enum AttachableObjectType
 {
     EMPTY,
+    PLUS,
+    MINUS,
     SPOTLIGHT,
     MOVING_HEAD,
     SPEAKER
