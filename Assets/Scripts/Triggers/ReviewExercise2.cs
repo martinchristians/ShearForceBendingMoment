@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ReviewExercise1 : ReviewExercise
+public class ReviewExercise2 : ReviewExercise
 {
     [SerializeField] private AttachableContainer[] attachableContainers;
 
@@ -17,9 +17,9 @@ public class ReviewExercise1 : ReviewExercise
         for (int i = 0; i < section.tasks.Count; i++)
         {
             var task = section.tasks[i];
-            if (task is TaskPlacingSymbol taskPlacingSymbol)
+            if (task is TaskPlacingWeight taskPlacingWeight)
             {
-                var taskIndex = taskPlacingSymbol.target;
+                var taskIndex = taskPlacingWeight.target;
                 var attachableContainerIndex = attachableContainers[i].containerIndex;
                 if (taskIndex != attachableContainerIndex)
                 {
@@ -27,15 +27,17 @@ public class ReviewExercise1 : ReviewExercise
                     return;
                 }
 
-                //All attachable boxes must be occupied
+                var taskType = taskPlacingWeight.weightType;
                 var countAttachableObject = attachableContainers[i].attachedObjectInsideCollider.Count;
                 if (countAttachableObject == 0)
                 {
-                    Debug.Log("Empty attachable box!");
+                    if (taskType == AttachableObjectType.EMPTY) continue;
+
+                    TriggerIncorrectAnswer();
+                    Debug.Log("Incorrect Answer!");
                     return;
                 }
 
-                var taskType = taskPlacingSymbol.symbolType;
                 var attachableObjectType = attachableContainers[i].attachedObjectInsideCollider[0].attachableObjectType;
                 if (taskType != attachableObjectType)
                 {

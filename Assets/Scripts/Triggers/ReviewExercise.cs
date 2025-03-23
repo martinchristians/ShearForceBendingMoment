@@ -15,12 +15,20 @@ public abstract class ReviewExercise : TriggerAction
 
     protected abstract void ReviewAttachment();
 
-    protected void TriggerCorrectAnswer()
+    protected void TriggerCorrectAnswer(AttachableContainer[] attachableContainers)
     {
         actionsOnCorrect.ForEach(ta => ta?.OnTrigger());
 
         actionsOnCorrect.Clear();
         actionsOnIncorrect.Clear();
+
+        foreach (var ac in attachableContainers)
+        {
+            foreach (var ao in ac.attachedObjectInsideCollider)
+            {
+                ao.gameObject.layer = 0;
+            }
+        }
     }
 
     protected void TriggerIncorrectAnswer()
