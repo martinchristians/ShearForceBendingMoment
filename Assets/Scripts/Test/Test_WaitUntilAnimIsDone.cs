@@ -6,16 +6,9 @@ public class Test_WaitUntilAnimIsDone : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private string animTrigger;
 
-    [SerializeField] private bool checkIfAnimIsDone;
-
     private float _animTime;
     private bool _isAnimPlayed;
     private bool _isAnimationComplete;
-
-    private void Awake()
-    {
-        checkIfAnimIsDone = false;
-    }
 
     private void Update()
     {

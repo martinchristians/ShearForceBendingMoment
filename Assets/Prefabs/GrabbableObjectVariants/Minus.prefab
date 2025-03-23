@@ -210,5 +210,10 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.00000046560308
       objectReference: {fileID: 0}
+    - target: {fileID: 8808801240826515589, guid: 91410ca94ff0643aeaf0f5d1dc6c6355,
+        type: 3}
+      propertyPath: attachableObjectType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91410ca94ff0643aeaf0f5d1dc6c6355, type: 3}

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c83b58f4c0e9457ca254b064793f862, type: 3}
   m_Name: Task1_4
   m_EditorClassIdentifier: 
-  taskName: 
-  description: 
+  symbolType: 2
+  target: 4

@@ -5,7 +5,7 @@ public abstract class TriggerAction : MonoBehaviour
 {
     [SerializeField] private float delayBeforeTriggering;
 
-    public virtual void OnTrigger()
+    public void OnTrigger()
     {
         if (delayBeforeTriggering > 0f)
             StartCoroutine(ExecuteWithDelay());

@@ -260,6 +260,11 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.000091204245
       objectReference: {fileID: 0}
+    - target: {fileID: 8808801240826515589, guid: 91410ca94ff0643aeaf0f5d1dc6c6355,
+        type: 3}
+      propertyPath: attachableObjectType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9095046810758891258, guid: 91410ca94ff0643aeaf0f5d1dc6c6355,
         type: 3}
       propertyPath: m_RootOrder

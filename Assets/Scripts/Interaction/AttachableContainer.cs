@@ -32,20 +32,35 @@ public class AttachableContainer : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        if (!_attachable) return;
-
         if (!isDisplayOnBeam)
         {
             //Attachable box
 
-            if (isDisplayPreview)
+            if (!isDisplayPreview)
             {
+                if (attachedObjectInsideCollider.Count == 1)
+                {
+                    emptyBox.enabled = false;
+                    filledBox.enabled = true;
+                }
+                else
+                {
+                    emptyBox.enabled = true;
+                    filledBox.enabled = false;
+                }
+            }
+            else
+            {
+                if (!_attachable) return;
+
                 _attachable.SetTransformPreviewToAttachableContainer();
             }
         }
         else
         {
             //Attachable beam
+
+            if (!_attachable) return;
 
             _attachable.SetTransformPreviewToBeam();
         }
@@ -62,15 +77,8 @@ public class AttachableContainer : MonoBehaviourPunCallbacks
 
             if (attachedObjectInsideCollider.Count == 1) return;
 
-            if (!isDisplayPreview)
-            {
-                emptyBox.enabled = false;
-                filledBox.enabled = true;
-            }
-            else
-            {
+            if (isDisplayPreview)
                 ao.previewRenderer.enabled = true;
-            }
         }
         else
         {
@@ -99,15 +107,8 @@ public class AttachableContainer : MonoBehaviourPunCallbacks
         {
             //Attachable box
 
-            if (!isDisplayPreview)
-            {
-                emptyBox.enabled = true;
-                filledBox.enabled = false;
-            }
-            else
-            {
+            if (isDisplayPreview)
                 attachable.previewRenderer.enabled = false;
-            }
         }
         else
         {
