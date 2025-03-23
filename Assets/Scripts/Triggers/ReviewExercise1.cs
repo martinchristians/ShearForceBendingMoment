@@ -14,7 +14,7 @@ public class ReviewExercise1 : ReviewExercise
             return;
         }
 
-        for (int i = 0; i < section.tasks.Count; i++)
+        for (int i = 0; i < taskCount; i++)
         {
             var task = section.tasks[i];
             if (task is TaskPlacingSymbol taskPlacingSymbol)

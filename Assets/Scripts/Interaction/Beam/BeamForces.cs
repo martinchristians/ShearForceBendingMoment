@@ -17,15 +17,18 @@ public class BeamForces : MonoBehaviour
         _beamForceDiagrams = GetComponent<BeamForceDiagrams>();
     }
 
-    public void UpdateBeamForces()
+    public void UpdateBeamForces(bool isUpdatingDiagrams)
     {
         _attachedObjectInsideCollider = new List<AttachableObject>();
         _attachedObjectInsideCollider.AddRange(_attachableContainer.attachedObjectInsideCollider);
 
         GetForcesAndDistances();
 
-        Debug.Log("### Update SFD & BMD ###");
-        _beamForceDiagrams.UpdateBeamForceDiagrams();
+        if (isUpdatingDiagrams)
+        {
+            Debug.Log("### Update SFD & BMD ###");
+            _beamForceDiagrams.UpdateBeamForceDiagrams();
+        }
     }
 
     private void GetForcesAndDistances()

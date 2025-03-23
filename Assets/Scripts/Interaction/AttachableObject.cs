@@ -5,13 +5,16 @@ using Photon.Pun;
 public class AttachableObject : MonoBehaviourPunCallbacks
 {
     public AttachableObjectType attachableObjectType;
-    private float _attachableObjectTypeForce;
-    public float attachableObjectTypeForce => _attachableObjectTypeForce;
+    [SerializeField] private bool isUpdatingDiagrams = true;
 
-    public AttachableContainer attachableContainer;
+    public float attachableObjectTypeForce => _attachableObjectTypeForce;
+    private float _attachableObjectTypeForce;
+
     public bool isAttachableContainerFilled => attachableContainer != null;
-    public List<AttachableContainer> attachableContainers = new();
+    public AttachableContainer attachableContainer;
+
     public bool isAttachableContainersFilled => attachableContainers.Count > 0;
+    public List<AttachableContainer> attachableContainers = new();
 
     public Renderer previewRenderer;
     public Transform transformAttachBoxContainerOffset;
@@ -71,7 +74,7 @@ public class AttachableObject : MonoBehaviourPunCallbacks
                 if (!_beamForces) return;
 
                 Debug.Log("### Update beam forces ###");
-                _beamForces.UpdateBeamForces();
+                _beamForces.UpdateBeamForces(isUpdatingDiagrams);
             }
         }
     }
@@ -89,7 +92,7 @@ public class AttachableObject : MonoBehaviourPunCallbacks
             if (attachableContainer.isCalculatingForces)
             {
                 Debug.Log("### Update beam forces ###");
-                _beamForces.UpdateBeamForces();
+                _beamForces.UpdateBeamForces(isUpdatingDiagrams);
             }
         }
 

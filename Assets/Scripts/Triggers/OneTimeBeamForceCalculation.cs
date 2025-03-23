@@ -1,15 +1,15 @@
+using System.Collections;
 using UnityEngine;
 
 public class OneTimeBeamForceCalculation : TriggerAction
 {
     [SerializeField] private AttachableContainer beam;
+    [SerializeField] private bool keepColliderOn;
     private BeamForces _beamForces;
-    private BeamForceDiagrams _beamForceDiagrams;
 
     private void Awake()
     {
         _beamForces = beam.GetComponent<BeamForces>();
-        _beamForceDiagrams = beam.GetComponent<BeamForceDiagrams>();
     }
 
     protected override void ExecuteTrigger()
@@ -25,9 +25,17 @@ public class OneTimeBeamForceCalculation : TriggerAction
             ao.GetComponent<Rigidbody>().isKinematic = true;
         }
 
-        _beamForces.UpdateBeamForces();
-        _beamForceDiagrams.UpdateBeamForceDiagrams();
+        _beamForces.UpdateBeamForces(true);
 
-        beam.GetComponent<Collider>().enabled = false;
+        if (!keepColliderOn)
+            beam.GetComponent<Collider>().enabled = false;
+        else
+            StartCoroutine(ClearBeamAfterWeightDisabled());
+    }
+
+    private IEnumerator ClearBeamAfterWeightDisabled()
+    {
+        yield return new WaitForSeconds(.3f);
+        beam.attachedObjectInsideCollider.Clear();
     }
 }
