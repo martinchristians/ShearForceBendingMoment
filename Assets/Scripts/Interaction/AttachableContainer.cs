@@ -21,7 +21,7 @@ public class AttachableContainer : MonoBehaviourPunCallbacks
     public Renderer emptyBox;
     public Renderer filledBox;
 
-    [Header("Attachable Beam")] public bool isCalculatingForces;
+    [Header("Attachable Beam")] public bool isUpdatingDiagrams = true;
     public Transform startPoint;
     public Transform endPoint;
 

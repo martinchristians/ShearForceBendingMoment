@@ -5,7 +5,6 @@ using Photon.Pun;
 public class AttachableObject : MonoBehaviourPunCallbacks
 {
     public AttachableObjectType attachableObjectType;
-    [SerializeField] private bool isUpdatingDiagrams = true;
 
     public float attachableObjectTypeForce => _attachableObjectTypeForce;
     private float _attachableObjectTypeForce;
@@ -67,15 +66,12 @@ public class AttachableObject : MonoBehaviourPunCallbacks
             SetTransformToBeam();
 
             //Start forces calculation
-            if (attachableContainer.isCalculatingForces)
-            {
-                _beamForces = attachableContainer.GetComponent<BeamForces>();
+            _beamForces = attachableContainer.GetComponent<BeamForces>();
 
-                if (!_beamForces) return;
+            if (!_beamForces) return;
 
-                Debug.Log("### Update beam forces ###");
-                _beamForces.UpdateBeamForces(isUpdatingDiagrams);
-            }
+            Debug.Log("### Update beam forces ###");
+            _beamForces.UpdateBeamForces(attachableContainer.isUpdatingDiagrams);
         }
     }
 
@@ -89,11 +85,8 @@ public class AttachableObject : MonoBehaviourPunCallbacks
         {
             //Attachable beam
 
-            if (attachableContainer.isCalculatingForces)
-            {
-                Debug.Log("### Update beam forces ###");
-                _beamForces.UpdateBeamForces(isUpdatingDiagrams);
-            }
+            Debug.Log("### Update beam forces ###");
+            _beamForces.UpdateBeamForces(attachableContainer.isUpdatingDiagrams);
         }
 
         attachableContainer = null;
