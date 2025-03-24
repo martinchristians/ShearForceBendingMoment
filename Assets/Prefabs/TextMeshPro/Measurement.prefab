@@ -1087,6 +1087,7 @@ GameObject:
   - component: {fileID: 8024225789398552587}
   - component: {fileID: 2173613182131584085}
   - component: {fileID: 1739499667397543092}
+  - component: {fileID: 3919694509891754678}
   m_Layer: 0
   m_Name: Measurement
   m_TagString: Untagged
@@ -1140,7 +1141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.98039216, g: 0.5803922, b: 0.761934, a: 0.3529412}
+  m_Color: {r: 0.98039216, g: 0.5803922, b: 0.761934, a: 0.29411766}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1183,6 +1184,23 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &3919694509891754678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6437841839627554941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e160868a53bf4687ae4a6d7d3111235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: {fileID: 7792044022048860439}
+  time: {fileID: 464027392159516130}
+  attempt: {fileID: 8762176824713940373}
+  mistake: {fileID: 1904360435082888508}
+  score: {fileID: 6611752786367102205}
 --- !u!1 &6928377325148120368
 GameObject:
   m_ObjectHideFlags: 0

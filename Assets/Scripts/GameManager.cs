@@ -4,14 +4,20 @@ using UnityEngine.XR.Management;
 public class GameManager : MonoBehaviour
 {
     public GameObject xrOrigin;
+    public Camera xrOriginCamera;
     public GameObject desktopCharacter;
+    public Camera desktopCharacterCamera;
 
-    [HideInInspector] public bool isVrPlayer;
+    public Canvas[] _canvas;
+
+    [Header("Exercise")] public Session session;
 
     public static GameManager instance;
 
     private void Awake()
     {
+        _canvas = FindObjectsOfType<Canvas>(true);
+
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -35,12 +41,21 @@ public class GameManager : MonoBehaviour
             Debug.Log("Play in Desktop mode");
             xrOrigin.SetActive(false);
             desktopCharacter.SetActive(true);
-            return;
+
+            AssignCamera(desktopCharacterCamera);
         }
+        else
+        {
+            xrOrigin.SetActive(true);
+            desktopCharacter.SetActive(false);
 
-        xrOrigin.SetActive(true);
-        desktopCharacter.SetActive(false);
+            AssignCamera(xrOriginCamera);
+        }
+    }
 
-        isVrPlayer = true;
+    private void AssignCamera(Camera cam)
+    {
+        foreach (var c in _canvas)
+            c.worldCamera = cam;
     }
 }
