@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65210e5c95dd9410d84999094b0b151d, type: 3}
-  m_Name: Exercise
+  m_Name: Exercise3
   m_EditorClassIdentifier: 
-  sceneName: Scenes/Exercises/Exercise
+  sceneName: Scenes/Exercises/Exercise2

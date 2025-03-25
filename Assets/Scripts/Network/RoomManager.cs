@@ -10,7 +10,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
     private string _mapType;
     public byte maxPlayer;
 
-    public TextMeshProUGUI occupancyRateTextExercise;
+    public TextMeshProUGUI occupancyRateTextExercise1;
+    public TextMeshProUGUI occupancyRateTextExercise2;
+    public TextMeshProUGUI occupancyRateTextExercise3;
     public TextMeshProUGUI occupancyRateTextExperiment;
 
     private void Start()
@@ -25,14 +27,25 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     #region UI Callback
 
-    public void JoinRandomRoom()
+    public void JoinExercise1Room()
     {
-        PhotonNetwork.JoinRandomRoom();
+        _mapType = MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE1;
+        ExitGames.Client.Photon.Hashtable expectedCustomRoomProperties = new ExitGames.Client.Photon.Hashtable()
+            { { MultiplayerVRConstants.MAP_TYPE_KEY, _mapType } };
+        PhotonNetwork.JoinRandomRoom(expectedCustomRoomProperties, maxPlayer);
     }
 
-    public void JoinExerciseRoom()
+    public void JoinExercise2Room()
     {
-        _mapType = MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE;
+        _mapType = MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE1;
+        ExitGames.Client.Photon.Hashtable expectedCustomRoomProperties = new ExitGames.Client.Photon.Hashtable()
+            { { MultiplayerVRConstants.MAP_TYPE_KEY, _mapType } };
+        PhotonNetwork.JoinRandomRoom(expectedCustomRoomProperties, maxPlayer);
+    }
+
+    public void JoinExercise3Room()
+    {
+        _mapType = MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE1;
         ExitGames.Client.Photon.Hashtable expectedCustomRoomProperties = new ExitGames.Client.Photon.Hashtable()
             { { MultiplayerVRConstants.MAP_TYPE_KEY, _mapType } };
         PhotonNetwork.JoinRandomRoom(expectedCustomRoomProperties, maxPlayer);
@@ -76,14 +89,21 @@ public class RoomManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey(MultiplayerVRConstants.MAP_TYPE_KEY))
         {
             object mapType;
-            if (PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(MultiplayerVRConstants.MAP_TYPE_KEY, out mapType))
+            if (PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(MultiplayerVRConstants.MAP_TYPE_KEY,
+                    out mapType))
             {
                 Debug.Log("Joined room with type: " + (string)mapType);
 
                 switch ((string)mapType)
                 {
-                    case MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE:
-                        PhotonNetwork.LoadLevel("Exercise");
+                    case MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE1:
+                        PhotonNetwork.LoadLevel("Exercise1");
+                        break;
+                    case MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE2:
+                        PhotonNetwork.LoadLevel("Exercise2");
+                        break;
+                    case MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE3:
+                        PhotonNetwork.LoadLevel("Exercise3");
                         break;
                     case MultiplayerVRConstants.MAP_TYPE_VALUE_EXPERIMENT:
                         PhotonNetwork.LoadLevel("Experiment");
@@ -103,15 +123,21 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         if (roomList.Count == 0)
         {
-            occupancyRateTextExercise.text = 0 + "/" + 20;
+            occupancyRateTextExercise1.text = 0 + "/" + 20;
+            occupancyRateTextExercise2.text = 0 + "/" + 20;
+            occupancyRateTextExercise3.text = 0 + "/" + 20;
             occupancyRateTextExperiment.text = 0 + "/" + 20;
         }
 
         foreach (RoomInfo room in roomList)
         {
             Debug.Log(room.Name);
-            if (room.Name.Contains(MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE))
-                occupancyRateTextExercise.text = room.PlayerCount + "/" + 20;
+            if (room.Name.Contains(MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE1))
+                occupancyRateTextExercise1.text = room.PlayerCount + "/" + 20;
+            else if (room.Name.Contains(MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE2))
+                occupancyRateTextExercise2.text = room.PlayerCount + "/" + 20;
+            else if (room.Name.Contains(MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE3))
+                occupancyRateTextExercise3.text = room.PlayerCount + "/" + 20;
             else if (room.Name.Contains(MultiplayerVRConstants.MAP_TYPE_VALUE_EXPERIMENT))
                 occupancyRateTextExperiment.text = room.PlayerCount + "/" + 20;
 

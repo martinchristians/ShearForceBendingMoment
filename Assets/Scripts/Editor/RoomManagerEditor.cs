@@ -10,8 +10,8 @@ public class RoomManagerEditor : Editor
         EditorGUILayout.HelpBox("This script is responsible for creating and joining room.", MessageType.Info);
 
         RoomManager roomManager = (RoomManager)target;
-        if (GUILayout.Button("Join Exercise Room"))
-            roomManager.JoinExerciseRoom();
+        if (GUILayout.Button("Join Exercise1 Room"))
+            roomManager.JoinExercise1Room();
         else if (GUILayout.Button("Join Experiment Room"))
             roomManager.JoinExperimentRoom();
     }
