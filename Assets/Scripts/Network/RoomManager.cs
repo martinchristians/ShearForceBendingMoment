@@ -37,7 +37,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public void JoinExercise2Room()
     {
-        _mapType = MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE1;
+        _mapType = MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE2;
         ExitGames.Client.Photon.Hashtable expectedCustomRoomProperties = new ExitGames.Client.Photon.Hashtable()
             { { MultiplayerVRConstants.MAP_TYPE_KEY, _mapType } };
         PhotonNetwork.JoinRandomRoom(expectedCustomRoomProperties, maxPlayer);
@@ -45,7 +45,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public void JoinExercise3Room()
     {
-        _mapType = MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE1;
+        _mapType = MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE3;
         ExitGames.Client.Photon.Hashtable expectedCustomRoomProperties = new ExitGames.Client.Photon.Hashtable()
             { { MultiplayerVRConstants.MAP_TYPE_KEY, _mapType } };
         PhotonNetwork.JoinRandomRoom(expectedCustomRoomProperties, maxPlayer);

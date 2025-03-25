@@ -4,24 +4,6 @@ using Photon.Realtime;
 
 public class VirtualWorldManager : MonoBehaviourPunCallbacks
 {
-    public static VirtualWorldManager instance;
-
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        instance = this;
-    }
-
-    public void LeaveRoomAndLoadPreviousRoom()
-    {
-        PhotonNetwork.LeaveRoom();
-    }
-
     #region Photon Callback
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
