@@ -23,7 +23,7 @@ public class SetUIContainer : TriggerAction
 
     protected override void ExecuteTrigger()
     {
-        var session = GameManager.instance.session;
+        var session = GameManager.instance.activeSession;
 
         InstantiateTaskContainer(session);
         InstantiateMeasurementContainer(session);

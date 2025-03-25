@@ -12,14 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial/Tutorial.unity
     guid: 347d9183ca39a4c9bb706a0006a2e83a
   - enabled: 1
-    path: Assets/Scenes/Exercises/Exercise1.unity
+    path: Assets/Scenes/Exercises/Exercise.unity
     guid: 537511f493fee4560801d74ff2e8fbb5
-  - enabled: 1
-    path: Assets/Scenes/Exercises/Exercise2.unity
-    guid: aa47b197e11014f54bcc379dd5edccb8
-  - enabled: 1
-    path: Assets/Scenes/Exercises/Exercise3.unity
-    guid: ca44288f31f634ec59138e9680ee2e23
   - enabled: 1
     path: Assets/Scenes/Experiment/Experiment.unity
     guid: b0ef5d929d5fc4362aa41af35c3d42b8

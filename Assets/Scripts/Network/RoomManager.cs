@@ -88,22 +88,17 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey(MultiplayerVRConstants.MAP_TYPE_KEY))
         {
-            object mapType;
             if (PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(MultiplayerVRConstants.MAP_TYPE_KEY,
-                    out mapType))
+                    out object mapType))
             {
                 Debug.Log("Joined room with type: " + (string)mapType);
 
                 switch ((string)mapType)
                 {
                     case MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE1:
-                        PhotonNetwork.LoadLevel("Exercise1");
-                        break;
                     case MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE2:
-                        PhotonNetwork.LoadLevel("Exercise2");
-                        break;
                     case MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE3:
-                        PhotonNetwork.LoadLevel("Exercise3");
+                        PhotonNetwork.LoadLevel("Exercise");
                         break;
                     case MultiplayerVRConstants.MAP_TYPE_VALUE_EXPERIMENT:
                         PhotonNetwork.LoadLevel("Experiment");

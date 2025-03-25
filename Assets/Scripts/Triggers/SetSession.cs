@@ -6,7 +6,7 @@ public class SetSession : TriggerAction
 
     protected override void ExecuteTrigger()
     {
-        var session = GameManager.instance.session;
+        var session = GameManager.instance.activeSession;
         if (!session)
         {
             Debug.Log("No active session is declared!");
