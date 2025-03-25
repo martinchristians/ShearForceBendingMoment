@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Section2
   m_EditorClassIdentifier: 
   title: A1.2
+  sectionIndex: 2
   tasks:
   - {fileID: 11400000, guid: 61b691836ba0942549b90466c6a9daa4, type: 2}
   - {fileID: 11400000, guid: 649d58668269548e09d85e94bb53d8f8, type: 2}

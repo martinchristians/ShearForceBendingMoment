@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 8850686168630368795}
   - component: {fileID: 326420512695467575}
   m_Layer: 0
-  m_Name: TextTime
+  m_Name: TextTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TIME
+  m_text: TIMER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 361f227cab7d247d89a7539affec9e06, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 361f227cab7d247d89a7539affec9e06, type: 2}
@@ -682,7 +682,7 @@ GameObject:
   - component: {fileID: 1064117323997377854}
   - component: {fileID: 464027392159516130}
   m_Layer: 0
-  m_Name: ValueTime
+  m_Name: ValueTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1197,7 +1197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title: {fileID: 7792044022048860439}
-  time: {fileID: 464027392159516130}
+  timer: {fileID: 464027392159516130}
   attempt: {fileID: 8762176824713940373}
   mistake: {fileID: 1904360435082888508}
   score: {fileID: 6611752786367102205}
@@ -1212,7 +1212,7 @@ GameObject:
   - component: {fileID: 2411783258139096509}
   - component: {fileID: 5887390687469576766}
   m_Layer: 0
-  m_Name: Time
+  m_Name: Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1763806307037577234}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2231027623459357452
 MonoBehaviour:
@@ -173,19 +173,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3875403766365784368, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
         type: 3}
-      propertyPath: triggerActions.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3875403766365784368, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
-        type: 3}
-      propertyPath: triggerActions.Array.data[6]
+      propertyPath: triggerActions.Array.data[5]
       value: 
       objectReference: {fileID: 2231027623459357452}
-    - target: {fileID: 3875403766365784368, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
-        type: 3}
-      propertyPath: triggerActions.Array.data[8]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4365540027575382322, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
         type: 3}
       propertyPath: m_IsActive
@@ -305,6 +295,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7536239894132840068, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8082558572618295809, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
         type: 3}
@@ -467,6 +462,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22114b797f0434249aee4cf217d06f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6891141350162524433 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7907398606585120455, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
+    type: 3}
+  m_PrefabInstance: {fileID: 3611598481809846230}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03809923fbfda429f9b52111df8ece67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7121387588751280963 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5821669878120637589, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
@@ -521,6 +528,7 @@ MonoBehaviour:
   - {fileID: 817456827576512534}
   - {fileID: 7121387588751280963}
   - {fileID: 84698891348361961}
+  - {fileID: 6891141350162524433}
   actionsOnIncorrect:
   - {fileID: 311943895275152449}
   - {fileID: 8589890164563167357}

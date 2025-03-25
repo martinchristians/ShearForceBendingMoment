@@ -43,11 +43,17 @@ public class SetUIContainer : TriggerAction
 
     private void InstantiateMeasurementContainer(Session session)
     {
-        session.sections.ForEach(s =>
+        var activeSection = SectionData.instance.section.sectionIndex;
+        for (int i = 0; i < session.sections.Count; i++)
         {
+            var section = session.sections[i];
+
             var go = Instantiate(measurementPrefab, measurementContainer.transform);
-            go.GetComponent<MeasurementData>().title.text = s.title;
-        });
+            var measurementData = go.GetComponent<MeasurementData>();
+            measurementData.title.text = section.title;
+
+            if (i == activeSection - 1) SectionData.instance.measurementData = measurementData;
+        }
     }
 
     private void InstantiateHintContainer()

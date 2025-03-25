@@ -5,5 +5,6 @@ using UnityEngine;
 public class Section : ScriptableObject
 {
     public string title;
+    public int sectionIndex = -1;
     public List<Task> tasks = new();
 }
