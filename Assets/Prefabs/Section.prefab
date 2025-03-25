@@ -8163,7 +8163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   section: {fileID: 0}
-  infoHintTexts: {fileID: 0}
+  infoHintData: {fileID: 0}
   hintDataList: []
 --- !u!1 &8264570721478757103
 GameObject:
@@ -8350,7 +8350,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayBeforeTriggering: 0
-  gameObjects: []
+  gameObjects:
+  - {fileID: 3549206951928815587}
 --- !u!1 &8822098188233805974
 GameObject:
   m_ObjectHideFlags: 0

@@ -58,7 +58,6 @@ public class SetUIContainer : TriggerAction
         for (int i = 0; i < infoHintData.infoTextList.Count; i++)
         {
             var go = Instantiate(hintPrefab, hintContainer.transform);
-            go.GetComponent<TextMeshProUGUI>().text = infoHintData.infoTextList[i];
             go.SetActive(false);
 
             //Check if any triggerAction should be executed when the hint is active
