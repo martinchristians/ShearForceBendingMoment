@@ -1,8 +1,16 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class SetUIContainer : TriggerAction
 {
+    [System.Serializable]
+    public struct HintTrigger
+    {
+        public int hintIndex;
+        public List<TriggerAction> hintTriggerActionList;
+    }
+
     [Header("TASK")] [SerializeField] private GameObject taskPrefab;
     [SerializeField] private GameObject taskContainer;
 
@@ -11,6 +19,7 @@ public class SetUIContainer : TriggerAction
 
     [Header("HINT")] [SerializeField] private GameObject hintPrefab;
     [SerializeField] private GameObject hintContainer;
+    [SerializeField] private List<HintTrigger> hintTriggers = new();
 
     protected override void ExecuteTrigger()
     {
@@ -43,15 +52,37 @@ public class SetUIContainer : TriggerAction
 
     private void InstantiateHintContainer()
     {
-        var hintData = SectionData.instance.hintData;
-        Debug.Log("hintData: " + hintData + ", Count: " + hintData.infoHints.Count);
-        hintData.infoHints.ForEach(h =>
-        {
-            h.wasShown = true;
+        var infoHintData = SectionData.instance.infoHintData;
+        SectionData.instance.hintDataList = new();
 
+        for (int i = 0; i < infoHintData.infoTextList.Count; i++)
+        {
             var go = Instantiate(hintPrefab, hintContainer.transform);
-            go.GetComponent<TextMeshProUGUI>().text = h.infoText;
+            go.GetComponent<TextMeshProUGUI>().text = infoHintData.infoTextList[i];
             go.SetActive(false);
-        });
+
+            //Check if any triggerAction should be executed when the hint is active
+            List<TriggerAction> tempTriggerActionList = new();
+            if (hintTriggers.Count != 0)
+            {
+                hintTriggers.ForEach(ht =>
+                {
+                    if (ht.hintIndex == i)
+                    {
+                        foreach (var ta in ht.hintTriggerActionList) tempTriggerActionList.Add(ta);
+                    }
+                });
+            }
+
+            //Create List<Hint> for GetHint() to retrieve
+            HintData newHintData = new HintData
+            {
+                infoText = infoHintData.infoTextList[i],
+                wasShown = false,
+                triggerList = tempTriggerActionList
+            };
+
+            SectionData.instance.hintDataList.Add(newHintData);
+        }
     }
 }

@@ -74,6 +74,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 76565124208ae4495921fbdb8cb533ff,
         type: 2}
+    - target: {fileID: 1953729211805013000, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
+        type: 3}
+      propertyPath: infoHintData
+      value: 
+      objectReference: {fileID: 11400000, guid: 26b37b4f9d8384af4aea1a73772db998,
+        type: 2}
+    - target: {fileID: 1953729211805013000, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
+        type: 3}
+      propertyPath: infoHintTexts
+      value: 
+      objectReference: {fileID: 11400000, guid: 26b37b4f9d8384af4aea1a73772db998,
+        type: 2}
     - target: {fileID: 2344003514378745141, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
         type: 3}
       propertyPath: delayBeforeTriggering

@@ -299,6 +299,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: c187dcc5c09e6406fa2b2667bcc72be8,
         type: 2}
+    - target: {fileID: 1953729211805013000, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
+        type: 3}
+      propertyPath: infoHintData
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b7f70240065c49e9b93c944096f0c85,
+        type: 2}
+    - target: {fileID: 1953729211805013000, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
+        type: 3}
+      propertyPath: infoHintTexts
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b7f70240065c49e9b93c944096f0c85,
+        type: 2}
     - target: {fileID: 2168846381548788054, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
         type: 3}
       propertyPath: m_AnchorMax.y

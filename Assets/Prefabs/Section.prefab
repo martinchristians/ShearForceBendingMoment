@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.972549, g: 0.9137255, b: 0.9019608, a: 0.19607843}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -409,7 +409,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &2236472083707162919
 MonoBehaviour:
@@ -1636,8 +1636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayBeforeTriggering: 0
-  hintContainer: {fileID: 0}
-  triggerActions: []
+  hintContainer: {fileID: 386985360104881805}
 --- !u!1 &2276712090468236140
 GameObject:
   m_ObjectHideFlags: 0
@@ -2658,6 +2657,7 @@ MonoBehaviour:
   hintPrefab: {fileID: 1565503886198118975, guid: 911af628541664a6087b8159b136eef6,
     type: 3}
   hintContainer: {fileID: 386985360104881805}
+  hintTriggers: []
 --- !u!1 &3112435055512602145
 GameObject:
   m_ObjectHideFlags: 0
@@ -5457,7 +5457,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &2775099537356321110
 MonoBehaviour:
@@ -5842,8 +5842,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: TASKS
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0926d26cba46740de84c37407da209c5, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 0926d26cba46740de84c37407da209c5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bc622a29d18c44a6a9b6db8c3efa136c, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: bc622a29d18c44a6a9b6db8c3efa136c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7179,8 +7179,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1a13771fa9e59434f8d1c007233e7842, type: 2}
-  - {fileID: 2100000, guid: 55f2d017b57e3b14aa7421b691236b64, type: 2}
+  - {fileID: 2100000, guid: b968a6728a7704b2f82d21fc26a35701, type: 2}
+  - {fileID: 2100000, guid: 05b92fe9187c747429c7a303f90baafc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8163,7 +8163,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   section: {fileID: 0}
-  hintData: {fileID: 0}
+  infoHintTexts: {fileID: 0}
+  hintDataList: []
 --- !u!1 &8264570721478757103
 GameObject:
   m_ObjectHideFlags: 0
