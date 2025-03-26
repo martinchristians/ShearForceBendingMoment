@@ -7,7 +7,7 @@ public class GetHint : TriggerAction
 
     protected override void ExecuteTrigger()
     {
-        var hintsData = SectionData.instance.hintDataList;
+        var hintsData = SectionDataManager.instance.hintDataList;
         var numHintsData = hintsData.Count;
 
         //Deactivate all task-gameobjects

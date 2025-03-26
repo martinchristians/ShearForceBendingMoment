@@ -2,9 +2,9 @@ public class SetTaskDone : TriggerAction
 {
     protected override void ExecuteTrigger()
     {
-        SectionData.instance.isTaskDone = true;
+        SectionDataManager.instance.isTaskDone = true;
 
-        var taskData = SectionData.instance.taskData;
+        var taskData = SectionDataManager.instance.taskData;
         taskData.doneTask.gameObject.SetActive(true);
         taskData.undoneTask.gameObject.SetActive(false);
     }

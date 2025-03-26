@@ -13,7 +13,9 @@ public class SetUIContainer : TriggerAction
     [Header("TASK")] [SerializeField] private GameObject taskPrefab;
     [SerializeField] private GameObject taskContainer;
 
-    [Header("MEASUREMENT")] [SerializeField] private GameObject measurementPrefab;
+    [Header("MEASUREMENT")] [SerializeField]
+    private GameObject measurementPrefab;
+
     [SerializeField] private GameObject measurementContainer;
 
     [Header("HINT")] [SerializeField] private GameObject hintPrefab;
@@ -22,7 +24,7 @@ public class SetUIContainer : TriggerAction
 
     protected override void ExecuteTrigger()
     {
-        var session = GameManager.instance.activeSession;
+        var session = SessionDataManager.instance.activeSession;
 
         InstantiateTaskContainer(session);
         InstantiateMeasurementContainer(session);
@@ -31,7 +33,7 @@ public class SetUIContainer : TriggerAction
 
     private void InstantiateTaskContainer(Session session)
     {
-        var activeSectionIndex = SectionData.instance.section.sectionIndex;
+        var activeSectionIndex = SessionDataManager.instance.activeSection.sectionIndex;
         for (int i = 0; i < session.sections.Count; i++)
         {
             var section = session.sections[i];
@@ -42,13 +44,13 @@ public class SetUIContainer : TriggerAction
             taskData.undoneTask.gameObject.SetActive(true);
             taskData.doneTask.gameObject.SetActive(false);
 
-            if (i == activeSectionIndex - 1) SectionData.instance.taskData = taskData;
+            if (i == activeSectionIndex - 1) SectionDataManager.instance.taskData = taskData;
         }
     }
 
     private void InstantiateMeasurementContainer(Session session)
     {
-        var activeSectionIndex = SectionData.instance.section.sectionIndex;
+        var activeSectionIndex = SessionDataManager.instance.activeSection.sectionIndex;
         for (int i = 0; i < session.sections.Count; i++)
         {
             var section = session.sections[i];
@@ -57,14 +59,14 @@ public class SetUIContainer : TriggerAction
             var measurementData = go.GetComponent<MeasurementData>();
             measurementData.title.text = section.title;
 
-            if (i == activeSectionIndex - 1) SectionData.instance.measurementData = measurementData;
+            if (i == activeSectionIndex - 1) SectionDataManager.instance.measurementData = measurementData;
         }
     }
 
     private void InstantiateHintContainer()
     {
-        var infoHintData = SectionData.instance.infoHintData;
-        SectionData.instance.hintDataList = new();
+        var infoHintData = SessionDataManager.instance.activeHintData;
+        SectionDataManager.instance.hintDataList = new();
 
         for (int i = 0; i < infoHintData.infoTextList.Count; i++)
         {
@@ -92,7 +94,7 @@ public class SetUIContainer : TriggerAction
                 triggerList = tempTriggerActionList
             };
 
-            SectionData.instance.hintDataList.Add(newHintData);
+            SectionDataManager.instance.hintDataList.Add(newHintData);
         }
     }
 }

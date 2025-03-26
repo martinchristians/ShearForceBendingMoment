@@ -9,10 +9,8 @@ public class HintData
     public List<TriggerAction> triggerList;
 }
 
-public class SectionData : MonoBehaviour
+public class SectionDataManager : MonoBehaviour
 {
-    public Section section;
-
     [HideInInspector] public TaskData taskData;
     [HideInInspector] public bool isTaskDone;
 
@@ -26,15 +24,13 @@ public class SectionData : MonoBehaviour
     [HideInInspector] public int mistake;
     [HideInInspector] public int score = 100;
 
-    public InfoHintData infoHintData;
     [HideInInspector] public List<HintData> hintDataList;
 
-    public static SectionData instance;
+    public static SectionDataManager instance;
 
     private void Awake()
     {
-        hintDataList = null;
-        _currentTime = startTime;
+        SetInitValue();
 
         if (instance != null && instance != this)
         {
@@ -62,6 +58,23 @@ public class SectionData : MonoBehaviour
         }
     }
 
+    public void SetInitValue()
+    {
+        taskData = null;
+        isTaskDone = false;
+
+        measurementData = null;
+        _currentTime = startTime;
+
+        minutes = 0;
+        seconds = 0;
+        attempt = 0;
+        mistake = 0;
+        score = 100;
+
+        hintDataList = null;
+    }
+
     private void UpdateTimerDisplay()
     {
         minutes = Mathf.FloorToInt(_currentTime / 60);
@@ -83,7 +96,7 @@ public class SectionData : MonoBehaviour
 
     public void UpdateScoreDisplay()
     {
-        int minAttempt = section.tasks.Count;
+        int minAttempt = SessionDataManager.instance.activeSection.tasks.Count;
         int acceptedAttempt = minAttempt * 2;
         int diff = Mathf.Max(0, attempt - acceptedAttempt);
         var penaltyMultiplier = Mathf.Ceil(diff / (float)minAttempt);

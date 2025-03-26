@@ -116,6 +116,12 @@ PrefabInstance:
       propertyPath: gameObjects.Array.data[3]
       value: 
       objectReference: {fileID: 8680865079756618755}
+    - target: {fileID: 2821962374646879090, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
+        type: 3}
+      propertyPath: nextSession
+      value: 
+      objectReference: {fileID: 11400000, guid: 4d704baace7d44750800ff5162d03e39,
+        type: 2}
     - target: {fileID: 3820168963998582609, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
         type: 3}
       propertyPath: m_RootOrder
@@ -432,6 +438,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b856ee9f9b84222b407020e895b65a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1528803277750533284 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2821962374646879090, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
+    type: 3}
+  m_PrefabInstance: {fileID: 3611598481809846230}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a74e2bc71b34f42719f40c4a4d0ead18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1643201730599243994 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2653511797296955148, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
@@ -567,6 +585,7 @@ MonoBehaviour:
   - {fileID: 6891141350162524433}
   - {fileID: 6214099758504307274}
   - {fileID: 6715217418633639490}
+  - {fileID: 1528803277750533284}
   actionsOnIncorrect:
   - {fileID: 311943895275152449}
   - {fileID: 8589890164563167357}

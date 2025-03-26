@@ -184,6 +184,24 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3007630577379391586, guid: fc9fa06abcea04b718eb7fd11a369202,
+        type: 3}
+      propertyPath: activeSection
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a470af1d01a642f29d0be2feba021e0,
+        type: 2}
+    - target: {fileID: 3007630577379391586, guid: fc9fa06abcea04b718eb7fd11a369202,
+        type: 3}
+      propertyPath: activeSession
+      value: 
+      objectReference: {fileID: 11400000, guid: c00195854e7f6405394da9f3401885b0,
+        type: 2}
+    - target: {fileID: 3007630577379391586, guid: fc9fa06abcea04b718eb7fd11a369202,
+        type: 3}
+      propertyPath: activeHintData
+      value: 
+      objectReference: {fileID: 11400000, guid: 16a85cb55b17d45da9688c73ed9e5fda,
+        type: 2}
     - target: {fileID: 3145323108715914689, guid: fc9fa06abcea04b718eb7fd11a369202,
         type: 3}
       propertyPath: m_IsActive
@@ -214,11 +232,29 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3572927825549955598, guid: fc9fa06abcea04b718eb7fd11a369202,
+        type: 3}
+      propertyPath: section
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a470af1d01a642f29d0be2feba021e0,
+        type: 2}
+    - target: {fileID: 4548103159925618663, guid: fc9fa06abcea04b718eb7fd11a369202,
+        type: 3}
+      propertyPath: activeSection
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a470af1d01a642f29d0be2feba021e0,
+        type: 2}
     - target: {fileID: 4548103159925618663, guid: fc9fa06abcea04b718eb7fd11a369202,
         type: 3}
       propertyPath: activeSession
       value: 
       objectReference: {fileID: 11400000, guid: c00195854e7f6405394da9f3401885b0,
+        type: 2}
+    - target: {fileID: 4548103159925618663, guid: fc9fa06abcea04b718eb7fd11a369202,
+        type: 3}
+      propertyPath: activeHintData
+      value: 
+      objectReference: {fileID: 11400000, guid: 16a85cb55b17d45da9688c73ed9e5fda,
         type: 2}
     - target: {fileID: 4548103160310434146, guid: fc9fa06abcea04b718eb7fd11a369202,
         type: 3}
@@ -379,21 +415,9 @@ PrefabInstance:
         type: 3}
       propertyPath: graphicRaycasters.Array.data[0]
       value: 
-      objectReference: {fileID: 1537886419}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc9fa06abcea04b718eb7fd11a369202, type: 3}
---- !u!114 &1537886419 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5543345524178147968, guid: fc9fa06abcea04b718eb7fd11a369202,
-    type: 3}
-  m_PrefabInstance: {fileID: 1415077898}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2033515372
 PrefabInstance:
   m_ObjectHideFlags: 0

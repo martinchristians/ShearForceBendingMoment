@@ -15,13 +15,13 @@ public class ComputeMeasurement : TriggerAction
         switch (measurementValue)
         {
             case MeasurementValue.ATTEMP:
-                SectionData.instance.UpdateAttemptDisplay(add);
+                SectionDataManager.instance.UpdateAttemptDisplay(add);
                 break;
             case MeasurementValue.MISTAKE:
-                SectionData.instance.UpdateMistakeDisplay(add);
+                SectionDataManager.instance.UpdateMistakeDisplay(add);
                 break;
             case MeasurementValue.SCORE:
-                SectionData.instance.UpdateScoreDisplay();
+                SectionDataManager.instance.UpdateScoreDisplay();
                 break;
         }
     }

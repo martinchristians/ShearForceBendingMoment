@@ -6,6 +6,6 @@ public class SetTimer : TriggerAction
 
     protected override void ExecuteTrigger()
     {
-        SectionData.instance.isStartTimer = isStartTimer;
+        SectionDataManager.instance.isStartTimer = isStartTimer;
     }
 }

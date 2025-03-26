@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a20f1726abcd04b1eb8c2867de63a411, type: 3}
-  m_Name: Section5
+  m_Name: Section2_5
   m_EditorClassIdentifier: 
   title: A2.5
   sectionIndex: 5
