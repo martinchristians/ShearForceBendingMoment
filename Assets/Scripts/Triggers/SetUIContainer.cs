@@ -26,13 +26,16 @@ public class SetUIContainer : TriggerAction
     {
         var session = SessionDataManager.instance.activeSession;
 
-        InstantiateTaskContainer(session);
-        InstantiateMeasurementContainer(session);
+        var taskPrefabs = InstantiateTaskContainer(session);
+        var measurementPrefabs = InstantiateMeasurementContainer(session);
         InstantiateHintContainer();
+        RestoreSectionData(taskPrefabs, measurementPrefabs);
     }
 
-    private void InstantiateTaskContainer(Session session)
+    private List<GameObject> InstantiateTaskContainer(Session session)
     {
+        List<GameObject> prefabs = new();
+
         var activeSectionIndex = SessionDataManager.instance.activeSection.sectionIndex;
         for (int i = 0; i < session.sections.Count; i++)
         {
@@ -44,12 +47,18 @@ public class SetUIContainer : TriggerAction
             taskData.undoneTask.gameObject.SetActive(true);
             taskData.doneTask.gameObject.SetActive(false);
 
+            prefabs.Add(go);
+
             if (i == activeSectionIndex - 1) SectionDataManager.instance.taskData = taskData;
         }
+
+        return prefabs;
     }
 
-    private void InstantiateMeasurementContainer(Session session)
+    private List<GameObject> InstantiateMeasurementContainer(Session session)
     {
+        List<GameObject> prefabs = new();
+
         var activeSectionIndex = SessionDataManager.instance.activeSection.sectionIndex;
         for (int i = 0; i < session.sections.Count; i++)
         {
@@ -59,8 +68,12 @@ public class SetUIContainer : TriggerAction
             var measurementData = go.GetComponent<MeasurementData>();
             measurementData.title.text = section.title;
 
+            prefabs.Add(go);
+
             if (i == activeSectionIndex - 1) SectionDataManager.instance.measurementData = measurementData;
         }
+
+        return prefabs;
     }
 
     private void InstantiateHintContainer()
@@ -96,5 +109,37 @@ public class SetUIContainer : TriggerAction
 
             SectionDataManager.instance.hintDataList.Add(newHintData);
         }
+    }
+
+    private void RestoreSectionData(List<GameObject> prefabTask, List<GameObject> prefabMeasurement)
+    {
+        SectionDataManager.instance.storedSectionDatas.ForEach(data =>
+        {
+            if (!data.isRestoreValue) return;
+
+            //Restore section data when player still on the same session
+            if (data.session != SessionDataManager.instance.activeSession) return;
+
+            var sessionList = SessionDataManager.instance.activeSession.sections;
+            for (int i = 0; i < sessionList.Count; i++)
+            {
+                var section = sessionList[i];
+                if (data.section.Equals(section))
+                {
+                    var TaskData = prefabTask[i].GetComponent<TaskData>();
+                    if (data.isTaskDone)
+                    {
+                        TaskData.doneTask.enabled = true;
+                        TaskData.undoneTask.enabled = false;
+                    }
+
+                    var measurementData = prefabMeasurement[i].GetComponent<MeasurementData>();
+                    measurementData.timer.text = string.Format("{0:0}:{1:00}", data.minutes, data.seconds);
+                    measurementData.attempt.text = data.attempt.ToString();
+                    measurementData.mistake.text = data.mistake.ToString();
+                    measurementData.score.text = data.score.ToString();
+                }
+            }
+        });
     }
 }

@@ -2,6 +2,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+public class SectionDataInfo
+{
+    public Session session;
+    public Section section;
+    public bool isRestoreValue;
+
+    public bool isTaskDone;
+    public int minutes;
+    public int seconds;
+    public int attempt;
+    public int mistake;
+    public int score;
+}
+
+[System.Serializable]
 public class HintData
 {
     public string infoText;
@@ -11,20 +26,22 @@ public class HintData
 
 public class SectionDataManager : MonoBehaviour
 {
-    [HideInInspector] public TaskData taskData;
-    [HideInInspector] public bool isTaskDone;
+    public TaskData taskData;
+    public bool _isTaskDone;
 
-    [HideInInspector] public MeasurementData measurementData;
+    public MeasurementData measurementData;
     [SerializeField] private float startTime = 180f;
     private float _currentTime;
     [HideInInspector] public bool isStartTimer;
-    [HideInInspector] public int minutes;
-    [HideInInspector] public int seconds;
-    [HideInInspector] public int attempt;
-    [HideInInspector] public int mistake;
-    [HideInInspector] public int score = 100;
+    public int minutes;
+    public int seconds;
+    public int attempt;
+    public int mistake;
+    public int score = 100;
 
-    [HideInInspector] public List<HintData> hintDataList;
+    public List<HintData> hintDataList;
+
+    [Header("Stored Data")] public List<SectionDataInfo> storedSectionDatas = new();
 
     public static SectionDataManager instance;
 
@@ -61,7 +78,7 @@ public class SectionDataManager : MonoBehaviour
     public void SetInitValue()
     {
         taskData = null;
-        isTaskDone = false;
+        _isTaskDone = false;
 
         measurementData = null;
         _currentTime = startTime;
@@ -73,6 +90,13 @@ public class SectionDataManager : MonoBehaviour
         score = 100;
 
         hintDataList = null;
+    }
+
+    public void UpdateTaskState()
+    {
+        _isTaskDone = true;
+        taskData.doneTask.gameObject.SetActive(true);
+        taskData.undoneTask.gameObject.SetActive(false);
     }
 
     private void UpdateTimerDisplay()
@@ -106,5 +130,29 @@ public class SectionDataManager : MonoBehaviour
 
         score -= subAttempt + subMistake;
         measurementData.score.text = score.ToString();
+    }
+
+    public void StoreSectionData()
+    {
+        SectionDataInfo newSectionDataInfo = new()
+        {
+            session = SessionDataManager.instance.activeSession,
+            section = SessionDataManager.instance.activeSection,
+            isRestoreValue = true,
+
+            isTaskDone = _isTaskDone,
+            minutes = minutes,
+            seconds = seconds,
+            attempt = attempt,
+            mistake = mistake,
+            score = score
+        };
+
+        storedSectionDatas.Add(newSectionDataInfo);
+    }
+
+    public void SetRestoreValueFalse()
+    {
+        storedSectionDatas.ForEach(data => data.isRestoreValue = false);
     }
 }
