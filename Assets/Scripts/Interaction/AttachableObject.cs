@@ -46,6 +46,9 @@ public class AttachableObject : MonoBehaviourPunCallbacks
         attachableContainer = attachableContainers[0];
         attachableContainer.attachable = null;
 
+        //Execute triggerAction
+        attachableContainer.attachedTriggerActions.ForEach(ta => ta.OnTrigger());
+
         if (!attachableContainer.isDisplayOnBeam)
         {
             //Attachable box
@@ -77,6 +80,9 @@ public class AttachableObject : MonoBehaviourPunCallbacks
 
     public void Detach()
     {
+        //Execute triggerAction
+        attachableContainer.deattachedTriggerActions.ForEach(ta => ta.OnTrigger());
+
         if (!attachableContainer.isDisplayOnBeam)
         {
             //Attachable box

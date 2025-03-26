@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class SetUIContainer : TriggerAction
@@ -32,18 +31,24 @@ public class SetUIContainer : TriggerAction
 
     private void InstantiateTaskContainer(Session session)
     {
-        session.sections.ForEach(s =>
+        var activeSectionIndex = SectionData.instance.section.sectionIndex;
+        for (int i = 0; i < session.sections.Count; i++)
         {
+            var section = session.sections[i];
+
             var go = Instantiate(taskPrefab, taskContainer.transform);
-            go.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = s.title;
-            go.transform.GetChild(1).gameObject.SetActive(true);
-            go.transform.GetChild(2).gameObject.SetActive(false);
-        });
+            var taskData = go.GetComponent<TaskData>();
+            taskData.title.text = section.title;
+            taskData.undoneTask.gameObject.SetActive(true);
+            taskData.doneTask.gameObject.SetActive(false);
+
+            if (i == activeSectionIndex - 1) SectionData.instance.taskData = taskData;
+        }
     }
 
     private void InstantiateMeasurementContainer(Session session)
     {
-        var activeSection = SectionData.instance.section.sectionIndex;
+        var activeSectionIndex = SectionData.instance.section.sectionIndex;
         for (int i = 0; i < session.sections.Count; i++)
         {
             var section = session.sections[i];
@@ -52,7 +57,7 @@ public class SetUIContainer : TriggerAction
             var measurementData = go.GetComponent<MeasurementData>();
             measurementData.title.text = section.title;
 
-            if (i == activeSection - 1) SectionData.instance.measurementData = measurementData;
+            if (i == activeSectionIndex - 1) SectionData.instance.measurementData = measurementData;
         }
     }
 

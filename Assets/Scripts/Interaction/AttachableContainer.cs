@@ -9,13 +9,12 @@ public class AttachableContainer : MonoBehaviourPunCallbacks
     public bool isDisplayOnBeam;
     public bool isDisplayPreview;
 
-    private AttachableObject _attachable;
-
     public AttachableObject attachable
     {
         get => _attachable;
         set => _attachable = value;
     }
+    private AttachableObject _attachable;
 
     [Header("Attachable Box")] public int containerIndex = -1;
     public Renderer emptyBox;
@@ -24,6 +23,9 @@ public class AttachableContainer : MonoBehaviourPunCallbacks
     [Header("Attachable Beam")] public bool isUpdatingDiagrams = true;
     public Transform startPoint;
     public Transform endPoint;
+
+    [Header("TriggerAction")] public List<TriggerAction> attachedTriggerActions;
+    public List<TriggerAction> deattachedTriggerActions;
 
     private void Awake()
     {

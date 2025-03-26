@@ -420,6 +420,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65afbd2d916c84ac9bcbfc30ca3314e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &945537025553187533 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4540122403099798811, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
+    type: 3}
+  m_PrefabInstance: {fileID: 3611598481809846230}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45b856ee9f9b84222b407020e895b65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1643201730599243994 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2653511797296955148, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
@@ -460,6 +472,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22114b797f0434249aee4cf217d06f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6214099758504307274 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7215350863083128220, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
+    type: 3}
+  m_PrefabInstance: {fileID: 3611598481809846230}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45b856ee9f9b84222b407020e895b65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6715217418633639490 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8011841094871538068, guid: 0b34903f7f69e4e6cbff473d55f0ee50,
+    type: 3}
+  m_PrefabInstance: {fileID: 3611598481809846230}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71a1a30692bd437db20bd541864e547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &6891141350162524433 stripped
@@ -529,10 +565,13 @@ MonoBehaviour:
   - {fileID: 7121387588751280963}
   - {fileID: 84698891348361961}
   - {fileID: 6891141350162524433}
+  - {fileID: 6214099758504307274}
+  - {fileID: 6715217418633639490}
   actionsOnIncorrect:
   - {fileID: 311943895275152449}
   - {fileID: 8589890164563167357}
   - {fileID: 6197575555665597253}
+  - {fileID: 945537025553187533}
   attachableContainers:
   - {fileID: 713056091937377260}
   - {fileID: 713056092085593819}

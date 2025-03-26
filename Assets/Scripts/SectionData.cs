@@ -12,14 +12,22 @@ public class HintData
 public class SectionData : MonoBehaviour
 {
     public Section section;
-    
-    public InfoHintData infoHintData;
-    public List<HintData> hintDataList;
-    
-    public MeasurementData measurementData;
+
+    [HideInInspector] public TaskData taskData;
+    [HideInInspector] public bool isTaskDone;
+
+    [HideInInspector] public MeasurementData measurementData;
     [SerializeField] private float startTime = 180f;
-    [HideInInspector] public bool isStartTimer;
     private float _currentTime;
+    [HideInInspector] public bool isStartTimer;
+    [HideInInspector] public int minutes;
+    [HideInInspector] public int seconds;
+    [HideInInspector] public int attempt;
+    [HideInInspector] public int mistake;
+    [HideInInspector] public int score = 100;
+
+    public InfoHintData infoHintData;
+    [HideInInspector] public List<HintData> hintDataList;
 
     public static SectionData instance;
 
@@ -56,8 +64,34 @@ public class SectionData : MonoBehaviour
 
     private void UpdateTimerDisplay()
     {
-        int minutes = Mathf.FloorToInt(_currentTime / 60);
-        int seconds = Mathf.FloorToInt(_currentTime % 60);
+        minutes = Mathf.FloorToInt(_currentTime / 60);
+        seconds = Mathf.FloorToInt(_currentTime % 60);
         measurementData.timer.text = string.Format("{0:0}:{1:00}", minutes, seconds);
+    }
+
+    public void UpdateAttemptDisplay(int add)
+    {
+        attempt += add;
+        measurementData.attempt.text = attempt.ToString();
+    }
+
+    public void UpdateMistakeDisplay(int add)
+    {
+        mistake += add;
+        measurementData.mistake.text = mistake.ToString();
+    }
+
+    public void UpdateScoreDisplay()
+    {
+        int minAttempt = section.tasks.Count;
+        int acceptedAttempt = minAttempt * 2;
+        int diff = Mathf.Max(0, attempt - acceptedAttempt);
+        var penaltyMultiplier = Mathf.Ceil(diff / (float)minAttempt);
+        var subAttempt = (int)penaltyMultiplier * 5;
+
+        int subMistake = mistake * 10;
+
+        score -= subAttempt + subMistake;
+        measurementData.score.text = score.ToString();
     }
 }
