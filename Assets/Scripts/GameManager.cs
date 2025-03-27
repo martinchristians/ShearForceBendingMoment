@@ -3,10 +3,15 @@ using UnityEngine.XR.Management;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject xrOrigin;
+    [HideInInspector] public bool isPlayerVR;
+
+    public GameObject xrOriginGameObject;
+    public GameObject xrOriginPlayer;
     public Camera xrOriginCamera;
-    public GameObject desktopCharacter;
-    public Camera desktopCharacterCamera;
+
+    public GameObject desktopCharacterGameObject;
+    public GameObject desktopPlayer;
+    public Camera desktopPlayerCamera;
 
     public Canvas[] _canvas;
 
@@ -37,15 +42,16 @@ public class GameManager : MonoBehaviour
         if (xrLoader == null)
         {
             Debug.Log("Play in Desktop mode");
-            xrOrigin.SetActive(false);
-            desktopCharacter.SetActive(true);
+            xrOriginGameObject.SetActive(false);
+            desktopCharacterGameObject.SetActive(true);
 
-            AssignCamera(desktopCharacterCamera);
+            AssignCamera(desktopPlayerCamera);
         }
         else
         {
-            xrOrigin.SetActive(true);
-            desktopCharacter.SetActive(false);
+            isPlayerVR = true;
+            xrOriginGameObject.SetActive(true);
+            desktopCharacterGameObject.SetActive(false);
 
             AssignCamera(xrOriginCamera);
         }

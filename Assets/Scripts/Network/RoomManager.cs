@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
@@ -15,6 +16,10 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public TextMeshProUGUI occupancyRateTextExercise3;
     public TextMeshProUGUI occupancyRateTextExperiment;
 
+    [SerializeField] private List<TriggerAction> triggerActionsOnJoinedLobby = new();
+    [SerializeField] private List<TriggerAction> triggerActionsOnJoinedRoom = new();
+    [SerializeField] private int delayBeforeLeft;
+
     private void Start()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -30,30 +35,29 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public void JoinExercise1Room()
     {
         _mapType = MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE1;
-        ExitGames.Client.Photon.Hashtable expectedCustomRoomProperties = new ExitGames.Client.Photon.Hashtable()
-            { { MultiplayerVRConstants.MAP_TYPE_KEY, _mapType } };
-        PhotonNetwork.JoinRandomRoom(expectedCustomRoomProperties, maxPlayer);
+        JoinRoomWithProperties();
     }
 
     public void JoinExercise2Room()
     {
         _mapType = MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE2;
-        ExitGames.Client.Photon.Hashtable expectedCustomRoomProperties = new ExitGames.Client.Photon.Hashtable()
-            { { MultiplayerVRConstants.MAP_TYPE_KEY, _mapType } };
-        PhotonNetwork.JoinRandomRoom(expectedCustomRoomProperties, maxPlayer);
+        JoinRoomWithProperties();
     }
 
     public void JoinExercise3Room()
     {
         _mapType = MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE3;
-        ExitGames.Client.Photon.Hashtable expectedCustomRoomProperties = new ExitGames.Client.Photon.Hashtable()
-            { { MultiplayerVRConstants.MAP_TYPE_KEY, _mapType } };
-        PhotonNetwork.JoinRandomRoom(expectedCustomRoomProperties, maxPlayer);
+        JoinRoomWithProperties();
     }
 
     public void JoinExperimentRoom()
     {
         _mapType = MultiplayerVRConstants.MAP_TYPE_VALUE_EXPERIMENT;
+        JoinRoomWithProperties();
+    }
+
+    private void JoinRoomWithProperties()
+    {
         ExitGames.Client.Photon.Hashtable expectedCustomRoomProperties = new ExitGames.Client.Photon.Hashtable()
             { { MultiplayerVRConstants.MAP_TYPE_KEY, _mapType } };
         PhotonNetwork.JoinRandomRoom(expectedCustomRoomProperties, maxPlayer);
@@ -66,7 +70,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         Debug.Log(message);
-
         CreateAndJoinRoom();
     }
 
@@ -93,25 +96,17 @@ public class RoomManager : MonoBehaviourPunCallbacks
             {
                 Debug.Log("Joined room with type: " + (string)mapType);
 
-                switch ((string)mapType)
-                {
-                    case MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE1:
-                    case MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE2:
-                    case MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE3:
-                        PhotonNetwork.LoadLevel("Exercise");
-                        break;
-                    case MultiplayerVRConstants.MAP_TYPE_VALUE_EXPERIMENT:
-                        PhotonNetwork.LoadLevel("Experiment");
-                        break;
-                }
+                StartCoroutine(LoadRoom(mapType));
             }
         }
     }
 
-    public override void OnPlayerEnteredRoom(Player newPlayer)
+    public override void OnJoinedLobby()
     {
-        Debug.Log(
-            "Player " + newPlayer.NickName + " is joining. Player count: " + PhotonNetwork.CurrentRoom.PlayerCount);
+        Debug.Log("YEY.. Joined the lobby!");
+
+        if (triggerActionsOnJoinedLobby.Count > 0)
+            triggerActionsOnJoinedLobby.ForEach(ta => ta.OnTrigger());
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
@@ -140,11 +135,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
         }
     }
 
-    public override void OnJoinedLobby()
-    {
-        Debug.Log("YEY.. Joined the lobby!");
-    }
-
     #endregion
 
     private void CreateAndJoinRoom()
@@ -162,5 +152,25 @@ public class RoomManager : MonoBehaviourPunCallbacks
         roomOptions.CustomRoomProperties = customRoomProperties;
 
         PhotonNetwork.CreateRoom(randomRoomName, roomOptions);
+    }
+
+    private IEnumerator LoadRoom(object mapType)
+    {
+        if (triggerActionsOnJoinedRoom.Count > 0)
+            triggerActionsOnJoinedRoom.ForEach(ta => ta.OnTrigger());
+
+        yield return new WaitForSeconds(delayBeforeLeft);
+
+        switch ((string)mapType)
+        {
+            case MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE1:
+            case MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE2:
+            case MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE3:
+                PhotonNetwork.LoadLevel("Exercise");
+                break;
+            case MultiplayerVRConstants.MAP_TYPE_VALUE_EXPERIMENT:
+                PhotonNetwork.LoadLevel("Experiment");
+                break;
+        }
     }
 }
