@@ -1,12 +1,10 @@
-using UnityEngine;
-
 #if PLATFORM_ANDROID
 using UnityEngine.Android;
 #endif
 
-public class GiveMicPermission : MonoBehaviour
+public class GiveMicPermission : TriggerAction
 {
-    void Start()
+    protected override void ExecuteTrigger()
     {
 #if PLATFORM_ANDROID
         if (!Permission.HasUserAuthorizedPermission(Permission.Microphone))

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
@@ -16,9 +15,18 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public TextMeshProUGUI occupancyRateTextExercise3;
     public TextMeshProUGUI occupancyRateTextExperiment;
 
-    [SerializeField] private List<TriggerAction> triggerActionsOnJoinedLobby = new();
-    [SerializeField] private List<TriggerAction> triggerActionsOnJoinedRoom = new();
-    [SerializeField] private int delayBeforeLeft;
+    public static RoomManager instance;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+    }
 
     private void Start()
     {
@@ -96,7 +104,17 @@ public class RoomManager : MonoBehaviourPunCallbacks
             {
                 Debug.Log("Joined room with type: " + (string)mapType);
 
-                StartCoroutine(LoadRoom(mapType));
+                switch ((string)mapType)
+                {
+                    case MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE1:
+                    case MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE2:
+                    case MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE3:
+                        PhotonNetwork.LoadLevel("Exercise");
+                        break;
+                    case MultiplayerVRConstants.MAP_TYPE_VALUE_EXPERIMENT:
+                        PhotonNetwork.LoadLevel("Experiment");
+                        break;
+                }
             }
         }
     }
@@ -104,9 +122,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         Debug.Log("YEY.. Joined the lobby!");
-
-        if (triggerActionsOnJoinedLobby.Count > 0)
-            triggerActionsOnJoinedLobby.ForEach(ta => ta.OnTrigger());
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
@@ -152,25 +167,5 @@ public class RoomManager : MonoBehaviourPunCallbacks
         roomOptions.CustomRoomProperties = customRoomProperties;
 
         PhotonNetwork.CreateRoom(randomRoomName, roomOptions);
-    }
-
-    private IEnumerator LoadRoom(object mapType)
-    {
-        if (triggerActionsOnJoinedRoom.Count > 0)
-            triggerActionsOnJoinedRoom.ForEach(ta => ta.OnTrigger());
-
-        yield return new WaitForSeconds(delayBeforeLeft);
-
-        switch ((string)mapType)
-        {
-            case MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE1:
-            case MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE2:
-            case MultiplayerVRConstants.MAP_TYPE_VALUE_EXERCISE3:
-                PhotonNetwork.LoadLevel("Exercise");
-                break;
-            case MultiplayerVRConstants.MAP_TYPE_VALUE_EXPERIMENT:
-                PhotonNetwork.LoadLevel("Experiment");
-                break;
-        }
     }
 }

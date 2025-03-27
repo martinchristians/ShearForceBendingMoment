@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delayBeforeTriggering: 0
   animator: {fileID: 0}
-  animTrigger: 
+  animTrigger: FadeOut
 --- !u!1 &1810448081763313765
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 496c1bcec02084af88782f4214a00b72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeTriggering: 0.15
+  delayBeforeTriggering: 1.5
 --- !u!1 &8001219261432626708
 GameObject:
   m_ObjectHideFlags: 0

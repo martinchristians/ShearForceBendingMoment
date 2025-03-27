@@ -1,3 +1,12 @@
+public enum LevelScene
+{
+    NONE,
+    EXERCISE1,
+    EXERCISE2,
+    EXERCISE3,
+    EXPERIMENT
+}
+
 public class MultiplayerVRConstants
 {
     public const string MAP_TYPE_KEY = "map";
