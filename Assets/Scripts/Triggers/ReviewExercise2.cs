@@ -33,7 +33,7 @@ public class ReviewExercise2 : ReviewExercise
                 {
                     if (taskType == AttachableObjectType.EMPTY) continue;
 
-                    TriggerIncorrectAnswer();
+                    TriggerIncorrectAnswer(attachableContainers);
                     Debug.Log("Incorrect Answer!");
                     return;
                 }
@@ -41,7 +41,7 @@ public class ReviewExercise2 : ReviewExercise
                 var attachableObjectType = attachableContainers[i].attachedObjectInsideCollider[0].attachableObjectType;
                 if (taskType != attachableObjectType)
                 {
-                    TriggerIncorrectAnswer();
+                    TriggerIncorrectAnswer(attachableContainers);
                     Debug.Log("Incorrect Answer!");
                     return;
                 }

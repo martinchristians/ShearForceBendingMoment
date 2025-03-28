@@ -33,9 +33,6 @@ public class GetHint : TriggerAction
         hintGameObject.GetComponent<TextMeshProUGUI>().text = hintsData[nextHintDataToShow].infoText;
 
         var triggerActionList = hintsData[nextHintDataToShow].triggerList;
-        if (triggerActionList.Count != 0)
-        {
-            triggerActionList.ForEach(ta => ta.OnTrigger());
-        }
+        triggerActionList.ForEach(ta => ta?.OnTrigger());
     }
 }

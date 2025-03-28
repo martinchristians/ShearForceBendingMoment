@@ -12,6 +12,6 @@ public class SetActive : TriggerAction
             return;
         }
 
-        foreach (var go in gameObjects) go.SetActive(true);
+        foreach (var go in gameObjects) go?.SetActive(true);
     }
 }

@@ -39,7 +39,7 @@ public class ReviewExercise1 : ReviewExercise
                 var attachableObjectType = attachableContainers[i].attachedObjectInsideCollider[0].attachableObjectType;
                 if (taskType != attachableObjectType)
                 {
-                    TriggerIncorrectAnswer();
+                    TriggerIncorrectAnswer(attachableContainers);
                     Debug.Log("Incorrect Answer!");
                     return;
                 }

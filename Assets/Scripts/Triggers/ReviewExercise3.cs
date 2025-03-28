@@ -19,7 +19,7 @@ public class ReviewExercise3 : ReviewExercise
         var attachableObjectCount = _beam.attachedObjectInsideCollider.Count;
         if (taskCount != attachableObjectCount)
         {
-            TriggerIncorrectAnswer();
+            TriggerIncorrectAnswer(attachableContainers);
             Debug.Log("Incorrect Answer! - Number attachable is wrong");
             return;
         }
@@ -36,7 +36,7 @@ public class ReviewExercise3 : ReviewExercise
 
                 if (!Mathf.Approximately(taskForce, beamForce))
                 {
-                    TriggerIncorrectAnswer();
+                    TriggerIncorrectAnswer(attachableContainers);
                     Debug.Log("Incorrect Answer! - Wrong type");
                     return;
                 }
@@ -49,7 +49,7 @@ public class ReviewExercise3 : ReviewExercise
 
                 if (Math.Abs(taskBeamPosition - posAttachableObject) > taskBeamRange)
                 {
-                    TriggerIncorrectAnswer();
+                    TriggerIncorrectAnswer(attachableContainers);
                     Debug.Log("Incorrect Answer!");
                     return;
                 }

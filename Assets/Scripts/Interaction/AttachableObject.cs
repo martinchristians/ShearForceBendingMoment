@@ -25,6 +25,11 @@ public class AttachableObject : MonoBehaviourPunCallbacks
 
     private BeamForces _beamForces;
 
+    [Header("TriggerAction")] public List<TriggerAction> onAttached;
+    public List<TriggerAction> onDetached;
+    public List<TriggerAction> onCorrect;
+    public List<TriggerAction> onIncorrect;
+
     private void Awake()
     {
         attachableContainer = null;
@@ -47,7 +52,8 @@ public class AttachableObject : MonoBehaviourPunCallbacks
         attachableContainer.attachable = null;
 
         //Execute triggerAction
-        attachableContainer.attachedTriggerActions.ForEach(ta => ta.OnTrigger());
+        attachableContainer.attachedTriggerActions.ForEach(ta => ta?.OnTrigger());
+        onAttached.ForEach(ta => ta?.OnTrigger());
 
         if (!attachableContainer.isDisplayOnBeam)
         {
@@ -81,7 +87,8 @@ public class AttachableObject : MonoBehaviourPunCallbacks
     public void Detach()
     {
         //Execute triggerAction
-        attachableContainer.deattachedTriggerActions.ForEach(ta => ta.OnTrigger());
+        attachableContainer.deattachedTriggerActions.ForEach(ta => ta?.OnTrigger());
+        onDetached.ForEach(ta => ta?.OnTrigger());
 
         if (!attachableContainer.isDisplayOnBeam)
         {

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
@@ -12,6 +13,8 @@ public class SpawnAttachableObject : MonoBehaviourPun
     private PhotonView _photonView;
     private bool _isOccupied;
 
+    [SerializeField] private List<TriggerAction> onSpawnTriggerActions;
+
     private void Awake()
     {
         _photonView = GetComponent<PhotonView>();
@@ -19,14 +22,18 @@ public class SpawnAttachableObject : MonoBehaviourPun
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.GetComponent<AttachableObject>().attachableObjectType != attachableObjectType) return;
+        var attachableObject = other.gameObject.GetComponent<AttachableObject>();
+        if (!attachableObject) return;
+        if (attachableObject.attachableObjectType != attachableObjectType) return;
 
         _isOccupied = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.GetComponent<AttachableObject>().attachableObjectType != attachableObjectType) return;
+        var attachableObject = other.gameObject.GetComponent<AttachableObject>();
+        if (!attachableObject) return;
+        if (attachableObject.attachableObjectType != attachableObjectType) return;
 
         _isOccupied = false;
         if (_photonView && PhotonNetwork.IsConnected && PhotonNetwork.InRoom)
@@ -68,5 +75,7 @@ public class SpawnAttachableObject : MonoBehaviourPun
             ao.transform.rotation = spawnTarget.rotation;
             break;
         }
+
+        onSpawnTriggerActions.ForEach(ta => ta.OnTrigger());
     }
 }

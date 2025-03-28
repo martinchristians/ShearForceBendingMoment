@@ -27,12 +27,22 @@ public abstract class ReviewExercise : TriggerAction
             foreach (var ao in ac.attachedObjectInsideCollider)
             {
                 ao.gameObject.layer = 0;
+
+                ao.onCorrect.ForEach(ta => ta.OnTrigger());
             }
         }
     }
 
-    protected void TriggerIncorrectAnswer()
+    protected void TriggerIncorrectAnswer(AttachableContainer[] attachableContainers)
     {
         actionsOnIncorrect.ForEach(ta => ta?.OnTrigger());
+
+        foreach (var ac in attachableContainers)
+        {
+            foreach (var ao in ac.attachedObjectInsideCollider)
+            {
+                ao.onIncorrect.ForEach(ta => ta.OnTrigger());
+            }
+        }
     }
 }
