@@ -227,6 +227,53 @@ Transform:
   m_Father: {fileID: 2370424836924150935}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4218813490488495647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1657691359097801102}
+  - component: {fileID: 505770713171506422}
+  m_Layer: 0
+  m_Name: SetController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1657691359097801102
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4218813490488495647}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2192174026013688438}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &505770713171506422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4218813490488495647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07ae0a1c542cf49d99f9f5ab7fe1eb28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayBeforeTriggering: 0
+  isActive: 0
+  firstPersonController: {fileID: 0}
 --- !u!1 &4796516280624237209
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,6 +339,7 @@ Transform:
   - {fileID: 6161867693727863601}
   - {fileID: 8873914324724877565}
   - {fileID: 8166839877486766732}
+  - {fileID: 1657691359097801102}
   m_Father: {fileID: 9185806156145527171}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1845,7 +1893,7 @@ PrefabInstance:
     - target: {fileID: 949496580983244663, guid: f81f778b5a37a4feabaa0d72793a854c,
         type: 3}
       propertyPath: triggerActions.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 949496580983244663, guid: f81f778b5a37a4feabaa0d72793a854c,
         type: 3}
@@ -1866,7 +1914,7 @@ PrefabInstance:
         type: 3}
       propertyPath: triggerActions.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 505770713171506422}
     - target: {fileID: 1522447202504735616, guid: f81f778b5a37a4feabaa0d72793a854c,
         type: 3}
       propertyPath: sceneViewId
