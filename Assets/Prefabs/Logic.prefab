@@ -1059,10 +1059,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4548103159526306245}
-  - component: {fileID: 7375740539079103301}
   - component: {fileID: 4548103159526306244}
   m_Layer: 0
-  m_Name: VRKeyboardManager
+  m_Name: KeyboardManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1083,19 +1082,6 @@ Transform:
   m_Father: {fileID: 4548103159560137244}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7375740539079103301
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4548103159526306242}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 10.333432, y: 5.652359, z: 5.8010902}
-  m_Center: {x: 0.042717457, y: 2.3261795, z: 7.57347}
 --- !u!114 &4548103159526306244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1110,12 +1096,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   username: 
   inputField: {fileID: 4500545458644845391}
-  keyboard: {fileID: 1577513642564677116}
-  leftMarret: {fileID: 1473516715500344852}
-  rightMarret: {fileID: 1473516716359364042}
-  leftHandController: {fileID: 4548103160220097704}
-  rightHandController: {fileID: 8294594394790131974}
-  player: {fileID: 5691356151011011343}
 --- !u!1 &4548103159546404315
 GameObject:
   m_ObjectHideFlags: 0
@@ -8168,30 +8148,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6412577133602233947}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1473516715500344852 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5516055533084788815, guid: 932cb06a11fe044aaa53b7350625a36b,
-    type: 3}
-  m_PrefabInstance: {fileID: 6412577133602233947}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1473516716359364042 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5516055536494474129, guid: 932cb06a11fe044aaa53b7350625a36b,
-    type: 3}
-  m_PrefabInstance: {fileID: 6412577133602233947}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1577513642564677116 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5555885726324831143, guid: 932cb06a11fe044aaa53b7350625a36b,
-    type: 3}
-  m_PrefabInstance: {fileID: 6412577133602233947}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb08f495a9bc93a46b97e507bf9be1b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4500545458644845391 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7389046697497812244, guid: 932cb06a11fe044aaa53b7350625a36b,
