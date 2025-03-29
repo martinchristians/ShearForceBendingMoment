@@ -144,6 +144,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 390419935687358732, guid: fc9fa06abcea04b718eb7fd11a369202,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 564985019413158829, guid: fc9fa06abcea04b718eb7fd11a369202,
         type: 3}
       propertyPath: m_IsActive
@@ -1565,6 +1570,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BeamSet
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147629627255606829, guid: d96bfbd20c53f40b6b12b1f67fd463be,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3164599321910299510, guid: d96bfbd20c53f40b6b12b1f67fd463be,
         type: 3}

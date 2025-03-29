@@ -1,23 +1,27 @@
 using Photon.Pun;
 using UnityEngine;
-using TMPro;
 
 public class LoginManager : MonoBehaviourPunCallbacks
 {
-    public TMP_InputField playerInputName;
+    public static LoginManager instance;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+    }
 
     #region UI Callback
 
-    public void ConnectAnonymously()
+    public void ConnectAndLoadLobby()
     {
-        PhotonNetwork.NickName = "1";
-
-        PhotonNetwork.ConnectUsingSettings();
-    }
-
-    public void ConnectWithName()
-    {
-        PhotonNetwork.NickName = playerInputName.text == "" ? "1" : playerInputName.text;
+        var username = KeyboardManager.instance.username;
+        PhotonNetwork.NickName = username == "" ? "NN" : username;
 
         PhotonNetwork.ConnectUsingSettings();
     }
