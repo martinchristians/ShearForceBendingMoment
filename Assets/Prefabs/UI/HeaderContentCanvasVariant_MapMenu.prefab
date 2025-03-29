@@ -3090,6 +3090,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2859057127460135005, guid: 070905c58a2804d7dbc0ceaa9658aef7,
         type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859057127460135005, guid: 070905c58a2804d7dbc0ceaa9658aef7,
+        type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -3203,10 +3208,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3642701164434926675, guid: 070905c58a2804d7dbc0ceaa9658aef7,
+        type: 3}
+      propertyPath: m_text
+      value: "LET'S CHECK YOUR UNDERSTANDING \U0001F60A"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642701164434926675, guid: 070905c58a2804d7dbc0ceaa9658aef7,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642701164434926675, guid: 070905c58a2804d7dbc0ceaa9658aef7,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 3894135049963949051, guid: 070905c58a2804d7dbc0ceaa9658aef7,
         type: 3}
       propertyPath: m_Name
-      value: HeaderContentCanvasVariant
+      value: HeaderContentCanvasVariant_MapMenu
       objectReference: {fileID: 0}
     - target: {fileID: 4152178507983493877, guid: 070905c58a2804d7dbc0ceaa9658aef7,
         type: 3}

@@ -61,6 +61,8 @@ public class KeyboardManager : MonoBehaviour
             return;
         }
 
+        if (inputField.text == "") return;
+
         inputField.text = inputField.text.Substring(0, inputField.text.Length - 1);
         username = inputField.text;
     }
