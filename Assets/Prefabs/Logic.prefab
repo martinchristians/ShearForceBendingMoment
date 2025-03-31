@@ -1708,6 +1708,7 @@ Transform:
   - {fileID: 4548103160475263974}
   - {fileID: 4548103160771500218}
   - {fileID: 4944904406120838525}
+  - {fileID: 8222892241463037940}
   - {fileID: 2727289056297765465}
   - {fileID: 4657989166793842659}
   m_Father: {fileID: 4548103160236277354}
@@ -5004,6 +5005,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delayBeforeTriggering: 0
   audioSource: {fileID: 764884117413018097}
+--- !u!1 &6906647061934269246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8222892241463037940}
+  - component: {fileID: 5705438457902565917}
+  m_Layer: 0
+  m_Name: TutorialDataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &8222892241463037940
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6906647061934269246}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4548103159560137244}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5705438457902565917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6906647061934269246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 622ba5be1a6dd438fa5d05ec75f6c13b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navigations: []
 --- !u!1 &6956572637417189371
 GameObject:
   m_ObjectHideFlags: 0
@@ -5071,7 +5117,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4548103159560137244}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3007630577379391586
 MonoBehaviour:
@@ -6111,7 +6157,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4548103159560137244}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3572927825549955598
 MonoBehaviour:

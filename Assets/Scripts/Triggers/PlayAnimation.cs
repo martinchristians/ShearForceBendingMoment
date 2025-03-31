@@ -13,6 +13,6 @@ public class PlayAnimation : TriggerAction
             return;
         }
 
-        animator.SetTrigger(animTrigger);
+        animator.Play(animTrigger);
     }
 }

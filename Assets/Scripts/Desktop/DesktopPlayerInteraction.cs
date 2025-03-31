@@ -78,7 +78,7 @@ public class DesktopPlayerInteraction : MonoBehaviour
         foreach (var result in results)
         {
             Button button = result.gameObject.GetComponent<Button>();
-            if (button)
+            if (button && button.gameObject.layer == 5)
             {
                 button.onClick.Invoke();
                 return true;
