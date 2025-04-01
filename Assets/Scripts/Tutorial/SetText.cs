@@ -4,6 +4,7 @@ using UnityEngine;
 public class SetText : TriggerAction
 {
     [SerializeField] private string targetText;
+    [SerializeField] private float fontSize = 0.8f;
     [SerializeField] private TextMeshProUGUI targetPanel;
 
     protected override void ExecuteTrigger()
@@ -15,5 +16,6 @@ public class SetText : TriggerAction
         }
 
         targetPanel.text = targetText;
+        targetPanel.fontSize = fontSize;
     }
 }
