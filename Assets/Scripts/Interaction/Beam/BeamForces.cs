@@ -2,6 +2,23 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+[System.Serializable]
+public class UpdateBeamCalculationUI
+{
+    public TextMeshProUGUI beamLength;
+    public TextMeshProUGUI meter;
+    public TextMeshProUGUI pinnedSupport;
+    public TextMeshProUGUI rollerSupport;
+
+    public Transform textForceContainer;
+    public Transform textDistanceContainer;
+    public Transform textSFContainer;
+    public Transform textBMContainer;
+
+    public GameObject prefabForce_SF;
+    public GameObject prefabDistance_BM;
+}
+
 public class BeamForces : MonoBehaviour
 {
     public BeamForceCalculation beamForceCalculation = new();

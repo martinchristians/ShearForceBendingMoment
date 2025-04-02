@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea6393809fb774a36b10a42fc6785992, type: 3}
-  m_Name: Task3_1
+  m_Script: {fileID: 11500000, guid: 7c83b58f4c0e9457ca254b064793f862, type: 3}
+  m_Name: Task2_6
   m_EditorClassIdentifier: 
-  weightType: 5
-  target: 1
+  symbolType: 2
+  target: 6

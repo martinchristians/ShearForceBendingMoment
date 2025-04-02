@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21022c0def1a94cb58f12b9b07a1b8b9, type: 3}
   m_Name: Task2_2
   m_EditorClassIdentifier: 
-  taskName: 
-  description: 
+  weightType: 5
+  normalizedBeamPosition: 0.5
+  normalizedBeamRange: 0.05

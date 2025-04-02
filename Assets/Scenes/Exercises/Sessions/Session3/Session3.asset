@@ -16,5 +16,3 @@ MonoBehaviour:
   sections:
   - {fileID: 11400000, guid: c03f1c7ddc8c3493e961435a77cbfe77, type: 2}
   - {fileID: 11400000, guid: 2b57a69df15234febb729f18b65af647, type: 2}
-  - {fileID: 11400000, guid: d0ba336e548d3492ea40ee023235266b, type: 2}
-  - {fileID: 11400000, guid: 679e4df160f164a1b96cf9a8a8049fc0, type: 2}

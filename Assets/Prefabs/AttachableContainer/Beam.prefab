@@ -123,9 +123,11 @@ MonoBehaviour:
   containerIndex: -1
   emptyBox: {fileID: 0}
   filledBox: {fileID: 0}
-  isCalculatingForces: 1
+  isUpdatingDiagrams: 1
   startPoint: {fileID: 1258157444136946282}
   endPoint: {fileID: 1002781188097660008}
+  attachedTriggerActions: []
+  deattachedTriggerActions: []
 --- !u!114 &4359604853575734218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,23 +141,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beamForceCalculation:
-    beamLength: 0
+    beamLength: 10
     forcesAndDistancesToStart: []
     supportLeft: 0
     supportRight: 0
     shearForces: []
     bendingMoments: []
-    _updateBeamCalculationUI:
-      beamLength: {fileID: 0}
-      meter: {fileID: 0}
-      pinnedSupport: {fileID: 0}
-      rollerSupport: {fileID: 0}
-      textForceContainer: {fileID: 0}
-      textDistanceContainer: {fileID: 0}
-      textSFContainer: {fileID: 0}
-      textBMContainer: {fileID: 0}
-      prefabForce_SF: {fileID: 0}
-      prefabDistance_BM: {fileID: 0}
+  _updateBeamCalculationUI:
+    beamLength: {fileID: 0}
+    meter: {fileID: 0}
+    pinnedSupport: {fileID: 0}
+    rollerSupport: {fileID: 0}
+    textForceContainer: {fileID: 0}
+    textDistanceContainer: {fileID: 0}
+    textSFContainer: {fileID: 0}
+    textBMContainer: {fileID: 0}
+    prefabForce_SF: {fileID: 0}
+    prefabDistance_BM: {fileID: 0}
 --- !u!114 &8098417186968639199
 MonoBehaviour:
   m_ObjectHideFlags: 0
