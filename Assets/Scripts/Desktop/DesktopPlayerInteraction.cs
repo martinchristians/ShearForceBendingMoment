@@ -61,17 +61,21 @@ public class DesktopPlayerInteraction : MonoBehaviour
 
     private bool IsPointingAtUI()
     {
+        //Invisible mouse pointer
         PointerEventData pointerData = new PointerEventData(EventSystem.current)
         {
+            //Set the mouse pointer to the center of the screen
             position = new Vector2(Screen.width / 2, Screen.height / 2)
         };
 
+        //A list that store UI elements the player is pointing at
         List<RaycastResult> results = new List<RaycastResult>();
 
         foreach (GraphicRaycaster gr in graphicRaycasters)
         {
             if (!gr) continue;
 
+            //Checks for UI elements in front of the camera and adds to results
             gr.Raycast(pointerData, results);
         }
 

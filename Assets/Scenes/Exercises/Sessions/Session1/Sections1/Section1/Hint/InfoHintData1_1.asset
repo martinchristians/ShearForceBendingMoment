@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: InfoHintData1_1
   m_EditorClassIdentifier: 
   infoTextList:
-  - A
-  - B
-  - C
-  - D
+  - 'Remember that positive bending moment values are displayed with minus symbol '
+  - 1 Moving Head in the middle.. Hmm.. It must start with positive shear force!
+  - "Hold on.. After the the moving head, isn\u2019t the shear force become negative?"

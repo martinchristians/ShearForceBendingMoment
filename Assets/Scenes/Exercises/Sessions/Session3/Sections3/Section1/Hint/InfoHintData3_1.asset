@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: InfoHintData3_1
   m_EditorClassIdentifier: 
   infoTextList:
-  - AAA
-  - BBB
-  - CCC
+  - Remember that positive bending moment values are displayed with minus symbol
+  - By looking at the graphic, I believe there should be 2 objects attached!
+  - "Correct me if I\u2019m wrong! But I guess the second item is heavier than the
+    first one."

@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f773019ab8b1d4191925cb343b1d0ed3, type: 3}
   m_Name: InfoHintData2_2
   m_EditorClassIdentifier: 
-  infoText: []
+  infoTextList:
+  - Remember that positive bending moment values are displayed with minus symbol
+  - By looking at the graphic, I can tell there is no object in the third box!
+  - "Correct me if I\u2019m wrong! But I guess the first item is the heaviest one
+    here."
+  - I believe the last object is the lightest one!

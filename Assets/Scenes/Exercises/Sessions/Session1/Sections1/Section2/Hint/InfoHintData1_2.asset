@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f773019ab8b1d4191925cb343b1d0ed3, type: 3}
   m_Name: InfoHintData1_2
   m_EditorClassIdentifier: 
-  infoText: []
+  infoTextList:
+  - Remember that positive bending moment values are displayed with minus symbol
+  - Now we have 2 spotlights and 1 speaker.. Hmm.. It must start with positive shear
+    force too!
+  - "Isn\u2019t.. The speaker resulting the shear force to be negative now?"
+  - Holy moly! The second spotlight makes the shear force even more negative!

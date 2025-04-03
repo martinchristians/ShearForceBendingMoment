@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f773019ab8b1d4191925cb343b1d0ed3, type: 3}
   m_Name: InfoHintData3_2
   m_EditorClassIdentifier: 
-  infoText: []
+  infoTextList:
+  - Remember that positive bending moment values are displayed with minus symbol
+  - By looking at the graphic, I believe there should be 3 objects attached!
+  - "Correct me if I\u2019m wrong! But I guess the second item is the heaviest here."
+  - By looking at the graphic, I can the first and third object has the same weight!
