@@ -2419,6 +2419,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2231027623459357452, guid: 085bb87bdd02d47d791dba18ec8b4df5,
+        type: 3}
+      propertyPath: gameObjects.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2231027623459357452, guid: 085bb87bdd02d47d791dba18ec8b4df5,
+        type: 3}
+      propertyPath: gameObjects.Array.data[4]
+      value: 
+      objectReference: {fileID: 3138166492958371532}
     - target: {fileID: 2775838579332453296, guid: 085bb87bdd02d47d791dba18ec8b4df5,
         type: 3}
       propertyPath: m_IsActive
@@ -2452,7 +2462,7 @@ PrefabInstance:
     - target: {fileID: 4631353488796399649, guid: 085bb87bdd02d47d791dba18ec8b4df5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4966314684143791582, guid: 085bb87bdd02d47d791dba18ec8b4df5,
         type: 3}
@@ -3353,6 +3363,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Section2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087923506045171111, guid: 88760ad32efe44948a4f3b2ff0b2753f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1327980966977879854, guid: 88760ad32efe44948a4f3b2ff0b2753f,
         type: 3}
@@ -4435,12 +4450,18 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 4718455456989593501}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 3138166492958371532}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbea6c0006ced4c08889650db6f22c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3138166492958371532 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7707440108597612881, guid: 93c746e4438534463936df0053be1326,
+    type: 3}
+  m_PrefabInstance: {fileID: 4718455456989593501}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5458099907919632981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4566,7 +4587,7 @@ PrefabInstance:
     - target: {fileID: 4631353488796399649, guid: 085bb87bdd02d47d791dba18ec8b4df5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4704060570139176767, guid: 085bb87bdd02d47d791dba18ec8b4df5,
         type: 3}
@@ -5084,6 +5105,11 @@ PrefabInstance:
         type: 3}
       propertyPath: nextSession
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881427734085504761, guid: 2501056042b2446ed8b7b9875165d682,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2946561337068904113, guid: 2501056042b2446ed8b7b9875165d682,
         type: 3}
@@ -5730,6 +5756,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9173416559707000119}
     m_Modifications:
+    - target: {fileID: 86486001223435899, guid: 1bfcac4000e884f84b2f9491ff3f84fb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3545614104846346973, guid: 1bfcac4000e884f84b2f9491ff3f84fb,
         type: 3}
       propertyPath: m_Layer
@@ -6649,6 +6680,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 4150496844198899485, guid: 2501056042b2446ed8b7b9875165d682,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4388753306257827332, guid: 2501056042b2446ed8b7b9875165d682,
         type: 3}
       propertyPath: m_IsActive
@@ -6933,6 +6969,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7099659448226495758, guid: 2501056042b2446ed8b7b9875165d682,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7527408671826258620, guid: 2501056042b2446ed8b7b9875165d682,
         type: 3}

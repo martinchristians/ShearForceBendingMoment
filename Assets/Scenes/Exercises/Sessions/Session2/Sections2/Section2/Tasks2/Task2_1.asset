@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6393809fb774a36b10a42fc6785992, type: 3}
   m_Name: Task2_1
   m_EditorClassIdentifier: 
-  weightType: 0
+  weightType: 5
   target: 1

@@ -86,6 +86,8 @@ public class AttachableObject : MonoBehaviourPunCallbacks
 
     public void Detach()
     {
+        if (attachableContainer == null) return;
+
         //Execute triggerAction
         attachableContainer.deattachedTriggerActions.ForEach(ta => ta?.OnTrigger());
         onDetached.ForEach(ta => ta?.OnTrigger());
