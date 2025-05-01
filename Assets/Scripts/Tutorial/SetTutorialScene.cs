@@ -7,7 +7,7 @@ public class SetTutorialScene : MonoBehaviour
     private bool _hasAudioEverFinished;
 
     public AudioSource audioSource;
-    [SerializeField] private AttachableContainer[] attachableContainers;
+    public AttachableContainer[] attachableContainers;
 
     public List<TriggerAction> onStart;
 
@@ -42,7 +42,7 @@ public class SetTutorialScene : MonoBehaviour
         }
     }
 
-    private void ResetAttachableObjectInsideContainer()
+    public void ResetAttachableObjectInsideContainer()
     {
         foreach (var ac in attachableContainers)
         {
